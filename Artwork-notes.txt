@@ -1,0 +1,11 @@
+Word Leap skeleton — 22 October 2026
+
+Generated using the built-in image generator. Alpha transparency verified.
+Project asset: CuentivaWordLeap/Assets.xcassets/WordLeapSkeleton.imageset/word-leap-skeleton.png
+Used by the SpriteKit death transformation and GameOverSummary.
+
+References: WordLeapHero/word-leap-hero.png (identity and pose),
+Amigos/Amigos-Nico/avatar.png (friendly skeleton mood).
+
+Final prompt:
+Use case: stylized-concept. Production transparent game sprite: playful skeletal version of the creature in image 1. Image 1 is identity, pose, silhouette and 3D illustration style reference; image 2 is reference for friendly non-scary skeleton face mood only. Keep image 1 full body leaping pose facing right, teal cape and brown backpack with gold rolled blanket, featherlike head outline and long tail. Transform face and body into cute ivory skeleton: big rounded friendly skull with dark eye sockets, smiling teeth, visible rounded ribs, bony limbs and segmented bony tail. Retain small orange/teal crest accents for recognition. Cheerful magical game-over transformation, not injured: no gore, no blood, no weapons. Same premium softly lit 3D cartoon rendering as image1. One character only, entirely in frame, square canvas, transparent alpha background, no ground, no circle, no text, no surrounding sparkles. Full sprite usable at 72px and as 160px game-over hero.

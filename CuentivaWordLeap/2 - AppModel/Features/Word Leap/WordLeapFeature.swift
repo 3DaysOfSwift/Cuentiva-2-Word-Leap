@@ -8,6 +8,7 @@ final class WordLeapFeature {
     private(set) var preparationError: String?
     private(set) var landedWordCount = 0
     private(set) var isLevelComplete = false
+    private(set) var runStatistics = AdventureRunStatistics()
     @ObservationIgnored private var preparationTask: Task<Void, Never>?
 
     init(levelPlanBuilder: LevelPlanBuilder, levelProgressStore: LevelProgressStore = LevelProgressStore()) {
@@ -15,10 +16,12 @@ final class WordLeapFeature {
         self.levelProgressStore = levelProgressStore
     }
 
-    func start(book: StoryBook) -> Task<Void, Never> {
+    func start(book: StoryBook, continuingRun: Bool = false) -> Task<Void, Never> {
         if let preparationTask { return preparationTask }
         let task = Task { [levelPlanBuilder] in
             let plan = await levelPlanBuilder.makePlan(for: book)
+            guard !Task.isCancelled else { return }
+            if !continuingRun { self.runStatistics = AdventureRunStatistics() }
             self.activeLevel = plan
             self.landedWordCount = 0
             self.isLevelComplete = false
@@ -30,7 +33,8 @@ final class WordLeapFeature {
     }
 
     func recordLanding(at wordIndex: Int) {
-        guard let activeLevel, activeLevel.words.indices.contains(wordIndex) else { return }
+        guard let activeLevel, !isLevelComplete, activeLevel.words.indices.contains(wordIndex) else { return }
+        runStatistics.recordLanding(in: activeLevel, at: wordIndex)
         landedWordCount = max(landedWordCount, wordIndex + 1)
         isLevelComplete = landedWordCount == activeLevel.words.count
         if isLevelComplete {
@@ -40,7 +44,15 @@ final class WordLeapFeature {
         }
     }
 
+    func recordRunProgress(doubloons: Int, activeSeconds: Double) {
+        guard let activeLevel else { return }
+        runStatistics.recordProgress(bookID: activeLevel.book.id,
+            doubloons: doubloons, activeSeconds: activeSeconds)
+    }
+
     func endLevel() {
+        preparationTask?.cancel()
+        preparationTask = nil
         activeLevel = nil
         landedWordCount = 0
         isLevelComplete = false

@@ -39,6 +39,15 @@ final class LibraryFeature {
         }
     }
 
+    func nextBook(after book: StoryBook) -> StoryBook? {
+        guard let index = books.firstIndex(where: { $0.id == book.id }), index + 1 < books.count else { return nil }
+        return books[index + 1]
+    }
+
+    func bookNumber(for book: StoryBook) -> Int? {
+        books.firstIndex(where: { $0.id == book.id }).map { $0 + 1 }
+    }
+
     private func loadBooks(
         from repository: CuentivaBookRepository,
         levelProgressStore: LevelProgressStore

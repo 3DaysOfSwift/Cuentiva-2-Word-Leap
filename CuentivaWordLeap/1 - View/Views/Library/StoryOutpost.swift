@@ -42,7 +42,7 @@ struct StoryOutpost: View {
                         .multilineTextAlignment(isLeading ? .leading : .trailing)
                         .lineLimit(1)
                     Label(
-                        isConquered ? "Conquered" : "\(book.wordCount) word platforms",
+                        isConquered ? "Conquered" : "\(book.platformCount) platforms",
                         systemImage: isConquered ? "flag.checkered" : "arrow.up.right.circle.fill"
                     )
                     .font(.caption.weight(.semibold))

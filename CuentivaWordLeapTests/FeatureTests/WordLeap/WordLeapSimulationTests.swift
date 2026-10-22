@@ -4,6 +4,60 @@ import Testing
 @testable import CuentivaWordLeap
 
 struct WordLeapSimulationTests {
+    @Test func coinsRequireContactAndRemainCollectedAfterRetryAndResize() {
+        let words = Array(repeating: "historia", count: 200)
+        var game = WordLeapSimulation(words: words, viewport: CGSize(width: 420, height: 912))
+        #expect(game.coins.count == 30)
+        #expect(game.collectedCoins.isEmpty)
+        _ = game.launch()
+        _ = game.advance(delta: 1.0 / 60, steeringTargetX: nil)
+        #expect(game.collectedCoins == [0])
+        game.resetToCheckpoint()
+        _ = game.launch()
+        _ = game.advance(delta: 1.0 / 60, steeringTargetX: nil)
+        #expect(game.collectedCoins == [0])
+        let resized = WordLeapSimulation(words: words, viewport: CGSize(width: 852, height: 393),
+            checkpointIndex: game.furthestPlatformIndex, collectedCoins: game.collectedCoins)
+        #expect(resized.collectedCoins == [0])
+        #expect(resized.coins.count == 30)
+    }
+
+    @Test func shortAndEmptyBooksHaveNoDuplicateCoinPlacements() {
+        let short = WordLeapSimulation(words: ["Hola", "."], viewport: CGSize(width: 390, height: 844))
+        #expect(short.coins.count == 2)
+        let empty = WordLeapSimulation(words: [], viewport: CGSize(width: 390, height: 844))
+        #expect(empty.coins.isEmpty)
+    }
+
+    @Test func deathPausesUntilExplicitRetryAndKeepsCheckpoint() throws {
+        var game = WordLeapSimulation(words: ["En", "este", "mercado"],
+            viewport: CGSize(width: 420, height: 912), checkpointIndex: 1)
+        let checkpoint = game.platforms[1]
+        _ = game.launch()
+        var deathNotifications = 0
+        for _ in 0..<600 {
+            _ = game.advance(delta: 1.0 / 60, steeringTargetX: 420)
+            if game.detectFall(below: checkpoint.frame.minY - 300) { deathNotifications += 1 }
+        }
+        #expect(game.isDead)
+        #expect(deathNotifications == 1)
+        #expect(game.furthestPlatformIndex == 1)
+        let fallenPosition = game.position
+        #expect(game.launch() == nil)
+        _ = game.advance(delta: 1, steeringTargetX: 0)
+        #expect(game.position == fallenPosition)
+
+        game.resetToCheckpoint()
+        #expect(!game.isDead)
+        #expect(game.isWaitingForLaunch)
+        #expect(game.furthestPlatformIndex == 1)
+        #expect(game.position == CGPoint(x: checkpoint.frame.midX,
+            y: checkpoint.frame.maxY + WordLeapSimulation.footOffset))
+        _ = game.launch()
+        #expect(!game.isWaitingForLaunch)
+        #expect(game.verticalVelocity > 0)
+    }
+
     @Test func spawnRemainsSupportedUntilTouch() throws {
         var game = WordLeapSimulation(words: ["En", "este", "mercado"], viewport: CGSize(width: 420, height: 912))
         let first = try #require(game.platforms.first)
@@ -60,7 +114,7 @@ struct WordLeapSimulationTests {
                      CGSize(width: 420, height: 912), CGSize(width: 852, height: 393),
                      CGSize(width: 1024, height: 1366)] {
             for book in books {
-                let words = book.spanishPassages.flatMap(SpanishWordTokenizer.words)
+                let words = book.spanishPassages.flatMap(SpanishWordTokenizer.platformTokens)
                 var game = WordLeapSimulation(words: words, viewport: size)
                 _ = game.launch()
                 for platform in game.platforms {
@@ -81,6 +135,12 @@ struct WordLeapSimulationTests {
                         "Unreachable word \(destination.index) in \(book.id), \(size), \(fps) fps")
                 }
                 #expect(game.furthestPlatformIndex == words.count - 1)
+                #expect(game.coins.count == min(30, words.count))
+                #expect(game.collectedCoins.count >= min(25, words.count),
+                    "Too few coins on the playable route in \(book.id)")
+                #expect(game.isWaitingForLaunch)
+                let diedAfterCompletion = game.detectFall(below: game.position.y + 1)
+                #expect(!diedAfterCompletion)
             }
         }
     }

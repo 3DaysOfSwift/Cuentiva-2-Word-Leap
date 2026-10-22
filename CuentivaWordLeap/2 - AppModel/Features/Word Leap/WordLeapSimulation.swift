@@ -22,13 +22,19 @@ struct WordLeapSimulation {
 
     let viewport: CGSize
     let platforms: [WordPlatform]
+    let coins: [Int: CGPoint]
+    private(set) var collectedCoins: Set<Int>
     private(set) var position: CGPoint = .zero
     private(set) var verticalVelocity: CGFloat = 0
     private(set) var furthestPlatformIndex: Int = -1
     private(set) var isWaitingForLaunch = true
+    private(set) var isDead = false
+    private(set) var activeSeconds: TimeInterval
 
-    init(words: [String], viewport: CGSize, checkpointIndex: Int = -1) {
+    init(words: [String], viewport: CGSize, checkpointIndex: Int = -1, collectedCoins: Set<Int> = [],
+         activeSeconds: TimeInterval = 0) {
         self.viewport = viewport
+        self.activeSeconds = activeSeconds
         var generated: [WordPlatform] = []
         var previousX = viewport.width / 2
         for (index, word) in words.enumerated() {
@@ -46,6 +52,15 @@ struct WordLeapSimulation {
             previousX = boundedX
         }
         platforms = generated
+        let coinCount = min(30, generated.count)
+        var placements: [Int: CGPoint] = [:]
+        for coin in 0..<coinCount {
+            let index = coinCount == 1 ? 0 : coin * (generated.count - 1) / (coinCount - 1)
+            let platform = generated[index]
+            placements[index] = CGPoint(x: platform.frame.midX, y: platform.frame.maxY + 65)
+        }
+        coins = placements
+        self.collectedCoins = collectedCoins.intersection(placements.keys)
         furthestPlatformIndex = min(checkpointIndex, generated.count - 1)
         resetToCheckpoint()
     }
@@ -56,11 +71,20 @@ struct WordLeapSimulation {
         position = CGPoint(x: platform.frame.midX, y: platform.frame.maxY + Self.footOffset)
         verticalVelocity = 0
         isWaitingForLaunch = true
+        isDead = false
+    }
+
+    /// Returns true only for the transition into death, so one fall shows one dialog.
+    mutating func detectFall(below boundary: CGFloat) -> Bool {
+        guard !isDead, !isWaitingForLaunch, position.y < boundary else { return false }
+        isDead = true
+        verticalVelocity = 0
+        return true
     }
 
     /// Spawn is supported and stationary until the player explicitly begins.
     mutating func launch() -> Int? {
-        guard isWaitingForLaunch, !platforms.isEmpty,
+        guard !isDead, isWaitingForLaunch, !platforms.isEmpty,
               furthestPlatformIndex < platforms.count - 1 else { return nil }
         isWaitingForLaunch = false
         verticalVelocity = Self.jumpSpeed
@@ -76,7 +100,8 @@ struct WordLeapSimulation {
     }
 
     mutating func advance(delta: TimeInterval, steeringTargetX: CGFloat?) -> Int? {
-        guard !isWaitingForLaunch, delta > 0 else { return nil }
+        guard !isDead, !isWaitingForLaunch, delta > 0, delta.isFinite else { return nil }
+        activeSeconds += delta
         let dt = CGFloat(min(delta, 1.0 / 30.0))
         let previous = position
         let horizontalVelocity = steeringTargetX.map {
@@ -85,6 +110,7 @@ struct WordLeapSimulation {
         position.x = min(max(position.x + horizontalVelocity * dt, 38), viewport.width - 38)
         position.y += verticalVelocity * dt - 0.5 * Self.gravity * dt * dt
         verticalVelocity -= Self.gravity * dt
+        collectCoins(from: previous, to: position)
         guard verticalVelocity < 0 else { return nil }
 
         for platform in platforms.reversed() where platform.index <= furthestPlatformIndex + 1 {
@@ -110,5 +136,20 @@ struct WordLeapSimulation {
             return nil
         }
         return nil
+    }
+
+    private mutating func collectCoins(from start: CGPoint, to end: CGPoint) {
+        let dx = end.x - start.x
+        let dy = end.y - start.y
+        let lengthSquared = dx * dx + dy * dy
+        for (index, coin) in coins where !collectedCoins.contains(index) {
+            let fraction = lengthSquared > 0
+                ? min(1, max(0, ((coin.x - start.x) * dx + (coin.y - start.y) * dy) / lengthSquared)) : 0
+            let distanceX = coin.x - (start.x + fraction * dx)
+            let distanceY = coin.y - (start.y + fraction * dy)
+            if distanceX * distanceX + distanceY * distanceY <= 42 * 42 {
+                collectedCoins.insert(index)
+            }
+        }
     }
 }

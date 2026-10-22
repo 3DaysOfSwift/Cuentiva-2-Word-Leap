@@ -16,7 +16,7 @@ final class AppModel {
     static func live() -> AppModel {
         let networkingManager = NetworkingManager()
         let bookRepository = CuentivaBookRepository(networkingManager: networkingManager)
-        let levelPlanBuilder = LevelPlanBuilder()
+        let levelPlanBuilder = LevelPlanBuilder(vocabularyURL: Bundle.main.url(forResource: "verbs", withExtension: "json"))
         let levelProgressStore = LevelProgressStore()
         let libraryFeature = LibraryFeature(
             bookRepository: bookRepository,
