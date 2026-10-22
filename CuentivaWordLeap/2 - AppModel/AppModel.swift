@@ -17,8 +17,15 @@ final class AppModel {
         let networkingManager = NetworkingManager()
         let bookRepository = CuentivaBookRepository(networkingManager: networkingManager)
         let levelPlanBuilder = LevelPlanBuilder()
-        let libraryFeature = LibraryFeature(bookRepository: bookRepository)
-        let wordLeapFeature = WordLeapFeature(levelPlanBuilder: levelPlanBuilder)
+        let levelProgressStore = LevelProgressStore()
+        let libraryFeature = LibraryFeature(
+            bookRepository: bookRepository,
+            levelProgressStore: levelProgressStore
+        )
+        let wordLeapFeature = WordLeapFeature(
+            levelPlanBuilder: levelPlanBuilder,
+            levelProgressStore: levelProgressStore
+        )
         return AppModel(libraryFeature: libraryFeature, wordLeapFeature: wordLeapFeature, settingsFeature: SettingsFeature())
     }
 }

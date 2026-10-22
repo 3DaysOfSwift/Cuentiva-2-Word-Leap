@@ -24,6 +24,7 @@ struct GameView: View {
                     GameCompletionCard(bookTitle: book.title, leave: leave)
                 } else {
                     GameReadingCard(word: viewModel.lastReadWord)
+                        .allowsHitTesting(false)
                 }
             }
             .padding(.horizontal, 18)
@@ -92,7 +93,7 @@ private struct GameReadingCard: View {
     let word: String
 
     var body: some View {
-        Text(word.isEmpty ? "Steer onto the glowing word islands." : word)
+        Text(word.isEmpty ? "Touch and hold left or right to steer." : word)
             .font(.title3.weight(.bold))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
