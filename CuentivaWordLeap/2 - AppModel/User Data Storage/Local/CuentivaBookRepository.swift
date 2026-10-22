@@ -1,0 +1,52 @@
+import Foundation
+
+actor CuentivaBookRepository {
+    private let networkingManager: NetworkingManager
+    private var cachedBooks: [StoryBook]?
+    private let githubStoriesURL = URL(string: "https://raw.githubusercontent.com/3DaysOfSwift/Cuentiva/main/content/editorial/stories.txt")
+
+    init(networkingManager: NetworkingManager) { self.networkingManager = networkingManager }
+
+    func books() throws -> [StoryBook] {
+        if let cachedBooks { return cachedBooks }
+        // Xcode copies files from the synchronized resource group to the app bundle root.
+        guard let bundledURL = Bundle.main.url(forResource: "stories", withExtension: "txt") else {
+            throw CocoaError(.fileNoSuchFile)
+        }
+        let books = try Self.decode(Data(contentsOf: bundledURL))
+        cachedBooks = books
+        return books
+    }
+
+    func refreshFromGitHub() async throws -> [StoryBook] {
+        guard let githubStoriesURL else { throw CocoaError(.fileNoSuchFile) }
+        let data = try await networkingManager.data(from: githubStoriesURL)
+        let books = try Self.decode(data)
+        cachedBooks = books
+        return books
+    }
+
+    static func decode(_ data: Data) throws -> [StoryBook] {
+        guard let manuscript = String(data: data, encoding: .utf8) else { throw CocoaError(.fileReadCorruptFile) }
+        var books: [StoryBook] = []
+        var header: (id: String, storyteller: String, title: String, englishTitle: String)?
+        var passages: [String] = []
+        func finishBook() {
+            if let header { books.append(StoryBook(id: header.id, storyteller: header.storyteller, title: header.title, englishTitle: header.englishTitle, spanishPassages: passages)) }
+        }
+        for line in manuscript.split(whereSeparator: \.isNewline).map(String.init) {
+            if line.hasPrefix("@") {
+                finishBook()
+                let fields = line.dropFirst().split(separator: "|", maxSplits: 4).map(String.init)
+                guard fields.count == 5 else { throw CocoaError(.fileReadCorruptFile) }
+                header = (fields[0], fields[1], fields[2], fields[3])
+                passages = []
+            } else if line != "---", let spanish = line.split(separator: "|", maxSplits: 1).first?.trimmingCharacters(in: .whitespaces), !spanish.isEmpty {
+                passages.append(spanish)
+            }
+        }
+        finishBook()
+        guard !books.isEmpty else { throw CocoaError(.fileReadCorruptFile) }
+        return books
+    }
+}
