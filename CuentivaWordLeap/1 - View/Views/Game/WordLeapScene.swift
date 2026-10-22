@@ -8,13 +8,9 @@ final class WordLeapScene: SKScene {
     private let cameraNode = SKCameraNode()
     private let sky = SKSpriteNode(imageNamed: "WordLeapSky")
     private let platformLayer = SKNode()
-    private let jumpSpeed: CGFloat = 720
-    private let playerFootOffset: CGFloat = 32
+    private var simulation: WordLeapSimulation
     private var steeringTargetX: CGFloat?
-    private var playerVelocity = CGVector(dx: 0, dy: 0)
-    private var platforms: [(index: Int, word: String, frame: CGRect)] = []
     private var lastUpdateTime: TimeInterval = 0
-    private var lastLandedPlatform = -1
 
     init(
         size: CGSize,
@@ -23,6 +19,7 @@ final class WordLeapScene: SKScene {
     ) {
         self.levelPlan = levelPlan
         self.reportLanding = reportLanding
+        simulation = WordLeapSimulation(words: levelPlan.words, viewport: size)
         super.init(size: size)
         scaleMode = .resizeFill
     }
@@ -53,7 +50,8 @@ final class WordLeapScene: SKScene {
         let scale = max(size.width / textureSize.width, size.height / textureSize.height)
         sky.size = CGSize(width: textureSize.width * scale, height: textureSize.height * scale)
         platformLayer.removeAllChildren()
-        platforms.removeAll()
+        simulation = WordLeapSimulation(words: levelPlan.words, viewport: size,
+            checkpointIndex: simulation.furthestPlatformIndex)
         makePlatforms()
         returnToCheckpoint()
         lastUpdateTime = 0
@@ -66,14 +64,9 @@ final class WordLeapScene: SKScene {
     }
 
     private func makePlatforms() {
-        for (index, word) in levelPlan.words.enumerated() {
-            let width = min(size.width - 36, max(112, min(194, CGFloat(word.count * 14 + 48))))
-            let x = platformX(for: index, width: width)
-            let y = max(156, size.height * 0.22) + CGFloat(index * 112)
-            let frame = CGRect(x: x - width / 2, y: y - 26, width: width, height: 52)
-            let platform = makePlatform(word: word, index: index, frame: frame)
+        for definition in simulation.platforms {
+            let platform = makePlatform(word: definition.word, index: definition.index, frame: definition.frame)
             platformLayer.addChild(platform)
-            platforms.append((index, word, frame))
         }
     }
 
@@ -107,17 +100,8 @@ final class WordLeapScene: SKScene {
         return container
     }
 
-    private func platformX(for index: Int, width: CGFloat) -> CGFloat {
-        if index == 0 { return size.width / 2 }
-        let sidePadding = width / 2 + 18
-        // Keep neighbouring jumps reachable on iPad and in landscape too.
-        let availableWidth = min(200, max(size.width - sidePadding * 2, 1))
-        let pattern = CGFloat((index * 71 + 43) % 100) / 100
-        return size.width / 2 + availableWidth * (pattern - 0.5)
-    }
-
     override func update(_ currentTime: TimeInterval) {
-        guard !platforms.isEmpty else { return }
+        guard !simulation.platforms.isEmpty else { return }
         guard lastUpdateTime > 0 else {
             lastUpdateTime = currentTime
             return
@@ -125,16 +109,10 @@ final class WordLeapScene: SKScene {
 
         let delta = min(currentTime - lastUpdateTime, 1.0 / 30.0)
         lastUpdateTime = currentTime
-        if let steeringTargetX {
-            playerVelocity.dx = min(340, max(-340, (steeringTargetX - player.position.x) * 7))
-        } else {
-            playerVelocity.dx = 0
+        if let index = simulation.advance(delta: delta, steeringTargetX: steeringTargetX) {
+            reportProgress(at: index)
         }
-        playerVelocity.dy -= 1_520 * delta
-        player.position.x = min(max(player.position.x + playerVelocity.dx * delta, 38), size.width - 38)
-        let previousY = player.position.y
-        player.position.y += playerVelocity.dy * delta
-        landOnPlatform(from: previousY)
+        player.position = simulation.position
         cameraNode.position.x = size.width / 2
         cameraNode.position.y = max(cameraNode.position.y, player.position.y + size.height * 0.08)
 
@@ -144,11 +122,8 @@ final class WordLeapScene: SKScene {
     }
 
     private func returnToCheckpoint() {
-        guard !platforms.isEmpty else { return }
-        let checkpoint = platforms[max(0, lastLandedPlatform)]
-        player.position = CGPoint(x: checkpoint.frame.midX, y: checkpoint.frame.maxY + playerFootOffset + 2)
-        // Drop gently onto the opening word before the first automatic jump.
-        playerVelocity = .zero
+        simulation.resetToCheckpoint()
+        player.position = simulation.position
         steeringTargetX = nil
         cameraNode.position = CGPoint(
             x: size.width / 2,
@@ -156,23 +131,10 @@ final class WordLeapScene: SKScene {
         )
     }
 
-    private func landOnPlatform(from previousY: CGFloat) {
-        guard playerVelocity.dy < 0 else { return }
-
-        for platform in platforms.reversed() where previousY - playerFootOffset >= platform.frame.maxY
-            && player.position.y - playerFootOffset <= platform.frame.maxY
-            && platform.frame.insetBy(dx: -14, dy: 0).contains(CGPoint(x: player.position.x, y: platform.frame.maxY)) {
-            player.position.y = platform.frame.maxY + playerFootOffset
-            playerVelocity.dy = jumpSpeed
-            player.zRotation = 0
-
-            if platform.index > lastLandedPlatform {
-                lastLandedPlatform = platform.index
-                playLandingPulse(at: platform.frame)
-                Task { @MainActor in reportLanding(platform.index, platform.word) }
-            }
-            return
-        }
+    private func reportProgress(at index: Int) {
+        let platform = simulation.platforms[index]
+        playLandingPulse(at: platform.frame)
+        Task { @MainActor in reportLanding(platform.index, platform.word) }
     }
 
     private func playLandingPulse(at frame: CGRect) {
@@ -191,12 +153,12 @@ final class WordLeapScene: SKScene {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let index = simulation.launch() { reportProgress(at: index) }
         touchesMoved(touches, with: event)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         steeringTargetX = nil
-        playerVelocity.dx = 0
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

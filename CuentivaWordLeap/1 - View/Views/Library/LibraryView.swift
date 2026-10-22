@@ -14,7 +14,6 @@ struct LibraryView: View {
             }
             .background(themeManager.background)
             .navigationTitle("Word Leap")
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Refresh", systemImage: "arrow.clockwise") { _ = viewModel.refresh() } } }
             .task { await viewModel.load().value }
             .onAppear { _ = viewModel.refreshProgress() }
             .navigationDestination(item: $selectedBook) { book in GameView(book: book) }

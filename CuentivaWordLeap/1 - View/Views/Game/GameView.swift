@@ -93,7 +93,7 @@ private struct GameReadingCard: View {
     let word: String
 
     var body: some View {
-        Text(word.isEmpty ? "Touch and hold left or right to steer." : word)
+        Text(word.isEmpty ? "Touch to jump. Hold left or right to steer." : word)
             .font(.title3.weight(.bold))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
