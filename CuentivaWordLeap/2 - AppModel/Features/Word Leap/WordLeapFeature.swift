@@ -2,6 +2,8 @@ import Observation
 
 @MainActor @Observable
 final class WordLeapFeature {
+    /// Artwork/profile catalogue only, not an inventory of unlocked characters.
+    let characterProfiles = GameCharacter.cuentivaCast
     private let levelPlanBuilder: LevelPlanBuilder
     private let levelProgressStore: LevelProgressStore
     private(set) var activeLevel: LevelPlan?

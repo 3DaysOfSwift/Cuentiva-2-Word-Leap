@@ -1,5 +1,10 @@
 # Tests
 
+`GameCharacterTests` verifies all nine cast identities, complete profiles, book lookup,
+unknown-storyteller fallback and the feature's read-only catalogue. The UIKit-only
+artwork test checks that every portrait and transparent sprite loads from the compiled
+asset catalogue; it needs the hosted iOS test runner, not the temporary macOS package.
+
 Run Command-U with the **Cuentiva Word Leap** scheme in Xcode, or:
 
 ```sh

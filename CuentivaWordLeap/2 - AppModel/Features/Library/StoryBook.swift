@@ -10,19 +10,10 @@ struct StoryBook: Identifiable, Hashable, Sendable {
     var cover: StoryBookCover = StoryBookCover()
 
     var platformCount: Int { spanishPassages.flatMap(SpanishWordTokenizer.platformTokens).count }
+    var characterProfile: GameCharacter? { GameCharacter.storyteller(named: storyteller) }
+
     var portraitAssetName: String {
-        switch storyteller {
-        case "Pipa": "StorytellerPipa"
-        case "Brasa": "StorytellerBrasa"
-        case "Musgo": "StorytellerMusgo"
-        case "Zumi": "StorytellerZumi"
-        case "Luma": "StorytellerLuma"
-        case "Nube": "StorytellerNube"
-        case "Tilo": "StorytellerTilo"
-        case "Mora": "StorytellerMora"
-        case "Faro": "StorytellerFaro"
-        default: "StorytellerMora"
-        }
+        characterProfile?.portraitAssetName ?? "StorytellerMora"
     }
 }
 

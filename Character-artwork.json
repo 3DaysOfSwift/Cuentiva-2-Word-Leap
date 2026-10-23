@@ -1,0 +1,84 @@
+{
+  "purpose": "Collectible-ready Cuentiva cast artwork and profiles. No selection screen, ownership grants or collectible mechanics are introduced.",
+  "date": "2026-10-22",
+  "identitySource": "../Cuentiva/Cuentiva/2 - AppModel/Features/Library/Author.swift",
+  "styleReference": "CuentivaWordLeap/Assets.xcassets/WordLeapHero.imageset/word-leap-hero.png",
+  "generation": {
+    "tool": "image_gen.imagegen",
+    "transparent_background": true
+  },
+  "characters": [
+    {
+      "name": "Pipa",
+      "sourceAuthorID": "marta",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerPipa.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapPipa.imageset/word-leap-pipa.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-b662c868-9e79-4568-8656-14abd7203197.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Pipa. Teal-green spotted lizard with cream belly, big brown eyes, coral-red scarf, brown backpack with rolled blanket and a small travel notebook."
+    },
+    {
+      "name": "Brasa",
+      "sourceAuthorID": "ana",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerBrasa.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapBrasa.imageset/word-leap-brasa.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-44f679cd-e8f6-444b-89a5-609eaa332bbe.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Brasa. Small terracotta-orange dragon with cream horns and belly, small wings, dark forest-green scarf and a botanical-patterned coffee mug held securely."
+    },
+    {
+      "name": "Musgo",
+      "sourceAuthorID": "luis",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerMusgo.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapMusgo.imageset/word-leap-musgo.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-82f3f321-0efd-47c8-b67f-f365f8629f21.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Musgo. Moss-green woodland wizard with floppy pointed leaf-and-berry hat, gold round spectacles, white beard, leaf-like ears, green robes with terracotta trim, tiny boots and a green leaf in hand."
+    },
+    {
+      "name": "Zumi",
+      "sourceAuthorID": "credit-fade9533cfe2",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerZumi.imageset/portrait.png",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapZumi.imageset/word-leap-zumi.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-45435f12-c3d3-45d7-9d0a-df12dc0a43bf.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Zumi. Tiny teal fuzzy fly with enormous brown eyes, two antennae, translucent wings, red scarf, brown satchel and an open brown book. Use the actual teal portrait identity, no spectacles."
+    },
+    {
+      "name": "Luma",
+      "sourceAuthorID": "credit-53e13e40b11a",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerLuma.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapLuma.imageset/word-leap-luma.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-8e811b7a-88c1-414f-932f-ca97ed9b63b0.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Luma. Cream-and-plum fuzzy moth with feathered antennae, plum wings patterned with ochre crescent moons and eye motifs, muted teal leaves, forest-green scarf and small warm brass lantern."
+    },
+    {
+      "name": "Nube",
+      "sourceAuthorID": "credit-5b644d127a59",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerNube.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapNube.imageset/word-leap-nube.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-15af1ee4-4730-480e-b9cc-99fc5d80e234.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Nube. Cream fluffy cloud sprite with blushing cheeks, little arms, forest-green fringed scarf with botanical embroidery and open red-brown book. Cloud-shaped lower body rather than human legs."
+    },
+    {
+      "name": "Tilo",
+      "sourceAuthorID": "credit-4ffea73372fb",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerTilo.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapTilo.imageset/word-leap-tilo.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-286c98dd-c0c3-4e99-bb0a-045fa1ab7ae8.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Tilo. Olive-green tortoise with ochre-brown shell, gold round spectacles, dark green and terracotta scarf, brown satchel, open red-brown book, little sturdy feet."
+    },
+    {
+      "name": "Mora",
+      "sourceAuthorID": "credit-0047224f3651",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerMora.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapMora.imageset/word-leap-mora.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-273f7d03-0b0b-4f6a-a1c8-a7294ff4a476.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Mora. Cute woodland mushroom sprite with dusty rose-red cap with cream spots, flowers and leaves, cream face, light tan bob hair, leaf-green cape and dress, cream sleeves, little brown satchel, sealed envelope and tiny boots."
+    },
+    {
+      "name": "Faro",
+      "sourceAuthorID": "credit-5f7d24711b1b",
+      "identityReference": "CuentivaWordLeap/Assets.xcassets/StorytellerFaro.imageset/portrait.jpg",
+      "spriteAsset": "CuentivaWordLeap/Assets.xcassets/WordLeapFaro.imageset/word-leap-faro.png",
+      "generatedOriginal": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-2e957077-6d56-41e3-aede-b1072c033ac0.png",
+      "prompt": "Create ONE production-ready full-body playable character sprite for Cuentiva 2: Word Leap. First reference is the character's canonical identity; preserve its species, face, colours and signature accessories. Second reference is ONLY the game's rendering/style reference, not the character to copy. Match its premium softly lit 3D storybook cartoon finish, clean readable silhouette, warm expressive eyes and richly coloured textured materials. Three-quarter view facing RIGHT, joyful airborne upward jump, complete body and all accessories visible, nothing cropped, centered with 10% transparent margin on every side. Square 1024px canvas. True transparent alpha background. No landscape, platform, floor, cast shadow, frame, lettering, watermark, other characters or UI. Simplify minute details for readability as a small 72pt game sprite. Do not give this character the orange hero's crest or cape unless it already has them. Character: Faro. Blue-grey owl with cream face, amber eyes, red scarf, brown satchel and folded map. Small wings out in a joyful upward leap and small orange talons."
+    }
+  ]
+}
