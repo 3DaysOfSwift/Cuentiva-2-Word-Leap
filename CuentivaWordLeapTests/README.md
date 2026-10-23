@@ -1,5 +1,26 @@
 # Tests
 
+Persistent treasure coverage: `DoubloonBalanceTests` checks duplicate/lower reports,
+checkpoint-safe crediting, leaving during a save, fresh replay earnings, invalid counts,
+and overlapping credits/refreshes. `LevelProgressStoreTests` checks reopening a balance
+without changing completed castles. `LibraryViewModelTests` checks saved-balance loading
+and live gameplay updates. All six added balance cases execute in the core macOS harness
+(60 tests in 17 suites). The HUD and transparent pinned header still need iOS visual checks.
+
+`FeatureTests/Library/LibraryFeatureTests.swift` checks numbered access for all
+52 castles, one-at-a-time unlocks, saved progress restoration, completed-book
+replays (including legacy out-of-order completions), unavailable catalogues and
+unknown IDs. `CastleAccessTests` checks gameplay denial, partial progress,
+completion-save ordering before Next level, cancellation, and canonical book
+content. `LibraryViewModelTests` checks disabled selection and live map updates.
+These run in the macOS package with production LibraryFeature, AppModel and
+LibraryViewModel sources; tests inject their own graph and never use AppModel.shared.
+
+`Support/AdventureTestFixture.swift` creates a separate temporary manuscript and
+UserDefaults suite for every test. The existing completion key and data format
+are preserved; no player progress is reset. GameViewModel's locked-entry test
+requires the hosted iOS runner, alongside its existing SpriteKit presentation test.
+
 `BookBackgroundTests` checks all 52 fixed book assignments: Sky Falls for 1–10,
 new packs at books 11/16/21/26/31/36/41/46/51 and the Letters finale at 52.
 It checks no early reveals or consecutive repeats after the introduction, stable

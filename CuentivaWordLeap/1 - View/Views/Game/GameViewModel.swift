@@ -21,8 +21,9 @@ final class GameViewModel {
     }
 
     var activeLevel: LevelPlan? { wordLeapFeature.activeLevel }
+    var preparationError: String? { wordLeapFeature.preparationError }
     var wordsRead: Int { wordLeapFeature.landedWordCount }
-    var isLevelComplete: Bool { wordLeapFeature.isLevelComplete }
+    var isLevelComplete: Bool { preparationError == nil && wordLeapFeature.isLevelComplete }
     var gameOverStatistics: [GameStatistic] {
         let stats = wordLeapFeature.runStatistics
         let seconds = Int(stats.activeSeconds)
@@ -61,10 +62,11 @@ final class GameViewModel {
         collectedDoubloons = 0
         let task = Task {
             await wordLeapFeature.start(book: book, continuingRun: continuingRun).value
-            guard !Task.isCancelled, let level = activeLevel else { return }
+            guard !Task.isCancelled, preparationError == nil, let level = activeLevel,
+                  level.book.id == book.id else { return }
             scene = WordLeapScene(size: CGSize(width: 390, height: 740), levelPlan: level,
                 reduceMotion: reduceMotion,
-                reportCoinCount: { [weak self] count in self?.collectedDoubloons = count },
+                reportCoinCount: { [weak self] count in self?.recordCollectedDoubloons(count) },
                 reportRescue: { [weak self] coins, seconds in self?.showCompletedBook(coins: coins, seconds: seconds) },
                 reportDeath: { [weak self] coins, seconds in self?.showDeath(coins: coins, seconds: seconds) },
                 reportLanding: { [weak self] index, word in self?.recordLanding(at: index, word: word) })
@@ -87,6 +89,11 @@ final class GameViewModel {
         wordLeapFeature.recordRunProgress(doubloons: coins, activeSeconds: seconds)
         collectedDoubloons = coins
         isDeathPresented = true
+    }
+
+    private func recordCollectedDoubloons(_ count: Int) {
+        collectedDoubloons = count
+        wordLeapFeature.recordCollectedDoubloons(count)
     }
 
     private func showCompletedBook(coins: Int, seconds: TimeInterval) {

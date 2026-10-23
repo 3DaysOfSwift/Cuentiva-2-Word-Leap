@@ -26,14 +26,16 @@ consecutive repeats. Books 11–15 alternate Coast/Sky Falls; books 16–20 use
 Roots/Sky Falls/Coast/Roots/Sky Falls. Later groups draw from the growing pool.
 Each new pack gets its debut before joining the rotation.
 
-This is scenery pacing, not an access-locking system: the existing Adventure
-selection remains unchanged. Choosing a later book directly shows its assigned
-environment. No progress migration, reward change or new unlock storage is needed.
+Castle access now follows the same adventure order: Castle 1 is open, and each
+later castle requires its predecessor's completion. Already-completed castles
+remain replayable, including legacy out-of-order completions. Scenery assignments
+remain fixed; unlocks use existing saved completion IDs without a migration.
 
 ## Try the environments
 
-Rebuild in Xcode and play book 1 to see Sky Falls, book 11 for Coast, or book 16
-for Roots. Other debut books are listed above. Climb several platforms:
+Rebuild in Xcode and play book 1 to see Sky Falls. Completing books 1–10 opens
+book 11's Coast environment; completing through book 15 opens Roots at book 16.
+Other debut books are listed above. Climb several platforms:
 landmarks should move slowly behind the faster foreground, while the distant
 backdrop stays fixed. These are camera-driven effects, not tilt controls.
 

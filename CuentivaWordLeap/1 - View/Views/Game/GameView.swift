@@ -3,6 +3,7 @@ import SwiftUI
 
 struct GameView: View {
     let book: StoryBook
+    @Environment(ThemeManager.self) private var themeManager
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
@@ -16,15 +17,38 @@ struct GameView: View {
                     .allowsHitTesting(!viewModel.isDeathPresented && !viewModel.isLevelComplete)
                     .ignoresSafeArea()
             } else {
-                Color(red: 0.03, green: 0.10, blue: 0.26).ignoresSafeArea()
-                ProgressView("Building \(book.title)…").tint(.white).foregroundStyle(.white)
+                WorldBackdrop(assetName: book.backgroundAssetName, shade: 0.3)
+                if let error = viewModel.preparationError {
+                    VStack(spacing: 16) {
+                        Image(systemName: "lock.fill").font(.largeTitle)
+                        Text(error).multilineTextAlignment(.center)
+                        Button("Return to Adventure", action: leave)
+                            .buttonStyle(.borderedProminent)
+                    }
+                    .foregroundStyle(themeManager.worldText)
+                    .padding(32)
+                    .worldPanel()
+                    .padding(24)
+                } else {
+                    VStack(spacing: 18) {
+                        Image(book.characterProfile?.spriteAssetName ?? "WordLeapMora")
+                            .resizable().scaledToFit().frame(height: 140)
+                            .accessibilityHidden(true)
+                        ProgressView("Opening \(book.title)…")
+                            .tint(themeManager.worldAccent)
+                    }
+                    .foregroundStyle(themeManager.worldText)
+                    .padding(28)
+                    .worldPanel()
+                    .padding(24)
+                }
             }
 
             VStack(spacing: 16) {
                 GameHUD(book: currentBook, wordsRead: viewModel.wordsRead, wordCount: activeWordCount,
                         coins: viewModel.collectedDoubloons, leave: leave)
                 Spacer()
-                if !viewModel.isLevelComplete {
+                if viewModel.scene != nil, !viewModel.isLevelComplete {
                     GameReadingCard(word: viewModel.lastReadWord)
                         .allowsHitTesting(false)
                 }
@@ -67,12 +91,14 @@ struct GameView: View {
                 CompletedBookPages(book: currentBook)
                     .navigationTitle(currentBook.title)
                     .navigationBarTitleDisplayMode(.inline)
+                    .worldNavigation()
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") { isReadingBook = false }
                         }
                     }
             }
+            .tint(themeManager.worldAccent)
         }
     }
 
@@ -93,6 +119,7 @@ struct GameView: View {
 }
 
 private struct GameHUD: View {
+    @Environment(ThemeManager.self) private var themeManager
     let book: StoryBook
     let wordsRead: Int
     let wordCount: Int
@@ -105,27 +132,28 @@ private struct GameHUD: View {
                 Image(systemName: "xmark")
                     .font(.headline.weight(.bold))
                     .frame(width: 44, height: 44)
-                    .background(.ultraThinMaterial, in: Circle())
+                    .worldPanel(cornerRadius: 22)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(themeManager.worldAccent)
+            .accessibilityLabel("Leave adventure")
 
             VStack(spacing: 2) {
                 Text(book.title).font(.headline.weight(.heavy)).lineLimit(1)
                 Text("\(wordsRead) / \(wordCount) platforms")
                     .font(.caption.weight(.bold)).monospacedDigit().opacity(0.82)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(themeManager.worldText)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 9)
             .padding(.horizontal, 14)
-            .background(.black.opacity(0.24), in: Capsule())
+            .worldPanel(cornerRadius: 24)
 
             HStack(spacing: 4) {
                 DoubloonArtwork(size: 28)
-                Text("\(coins)").font(.headline.monospacedDigit()).foregroundStyle(.white)
+                Text("\(coins)").font(.headline.monospacedDigit()).foregroundStyle(themeManager.worldText)
             }
             .padding(9)
-            .background(.black.opacity(0.35), in: Capsule())
+            .worldPanel(cornerRadius: 24)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(coins) doubloons collected")
         }
@@ -133,15 +161,16 @@ private struct GameHUD: View {
 }
 
 private struct GameReadingCard: View {
+    @Environment(ThemeManager.self) private var themeManager
     let word: String
 
     var body: some View {
         Text(word.isEmpty ? "Touch to jump. Hold left or right to steer." : word)
             .font(.title3.weight(.bold))
-            .foregroundStyle(.white)
+            .foregroundStyle(themeManager.worldText)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 14)
             .padding(.horizontal, 20)
-            .background(.black.opacity(0.38), in: Capsule())
+            .worldPanel(cornerRadius: 24)
     }
 }

@@ -38,13 +38,9 @@ struct GameCharacterTests {
     }
 
     @MainActor @Test func featureExposesProfilesWithoutStartingAnAdventure() throws {
-        let suiteName = "GameCharacterTests-\(UUID())"
-        guard let defaults = UserDefaults(suiteName: suiteName) else {
-            throw CocoaError(.fileWriteUnknown)
-        }
-        defer { UserDefaults(suiteName: suiteName)?.removePersistentDomain(forName: suiteName) }
-        let feature = WordLeapFeature(levelPlanBuilder: LevelPlanBuilder(vocabularyURL: nil),
-            levelProgressStore: LevelProgressStore(defaults: defaults))
+        let fixture = try AdventureTestFixture()
+        defer { try? fixture.cleanUp() }
+        let feature = fixture.game
         #expect(feature.characterProfiles == GameCharacter.cuentivaCast)
         #expect(feature.activeLevel == nil)
     }

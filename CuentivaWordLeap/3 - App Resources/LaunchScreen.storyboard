@@ -13,8 +13,27 @@
                 <viewController id="launch-controller" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="launch-view">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="WorldVillage" translatesAutoresizingMaskIntoConstraints="NO" id="launch-village">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="launch-shade">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" red="0.025" green="0.055" blue="0.10" alpha="0.32" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="launch-safe-area"/>
                         <color key="backgroundColor" name="LaunchBackground"/>
+                        <constraints>
+                            <constraint firstItem="launch-village" firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="village-top"/>
+                            <constraint firstItem="launch-village" firstAttribute="bottom" secondItem="launch-view" secondAttribute="bottom" id="village-bottom"/>
+                            <constraint firstItem="launch-village" firstAttribute="leading" secondItem="launch-view" secondAttribute="leading" id="village-leading"/>
+                            <constraint firstItem="launch-village" firstAttribute="trailing" secondItem="launch-view" secondAttribute="trailing" id="village-trailing"/>
+                            <constraint firstItem="launch-shade" firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="shade-top"/>
+                            <constraint firstItem="launch-shade" firstAttribute="bottom" secondItem="launch-view" secondAttribute="bottom" id="shade-bottom"/>
+                            <constraint firstItem="launch-shade" firstAttribute="leading" secondItem="launch-view" secondAttribute="leading" id="shade-leading"/>
+                            <constraint firstItem="launch-shade" firstAttribute="trailing" secondItem="launch-view" secondAttribute="trailing" id="shade-trailing"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="launch-first-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -22,6 +41,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="WorldVillage" width="852" height="1846"/>
         <namedColor name="LaunchBackground">
             <color red="0.96" green="0.96" blue="0.94" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

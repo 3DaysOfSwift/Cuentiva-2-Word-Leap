@@ -4,17 +4,26 @@ import Testing
 
 @MainActor
 struct GameViewModelTests {
+    @Test func lockedCastleShowsAnErrorWithoutCreatingAScene() async throws {
+        let fixture = try AdventureTestFixture()
+        defer { try? fixture.cleanUp() }
+        await fixture.library.load().value
+        let model = GameViewModel(wordLeapFeature: fixture.game, libraryFeature: fixture.library)
+        let second = try #require(fixture.library.books.first { $0.id == "two" })
+        await model.prepare(second).value
+        #expect(model.scene == nil)
+        #expect(model.preparationError?.contains("Castle 1") == true)
+        model.leaveLevel()
+    }
+
     @Test func deathPresentsStatsAndCheckpointRetryKeepsThem() async throws {
-        guard let defaults = UserDefaults(suiteName: "GameViewModelTests-\(UUID())") else {
-            throw CocoaError(.fileWriteUnknown)
-        }
-        let progress = LevelProgressStore(defaults: defaults)
-        let feature = WordLeapFeature(levelPlanBuilder: LevelPlanBuilder(), levelProgressStore: progress)
-        let library = LibraryFeature(bookRepository: CuentivaBookRepository(networkingManager: NetworkingManager()),
-            levelProgressStore: progress)
+        let fixture = try AdventureTestFixture()
+        defer { try? fixture.cleanUp() }
+        let feature = fixture.game
+        let library = fixture.library
+        await library.load().value
         let model = GameViewModel(wordLeapFeature: feature, libraryFeature: library)
-        let book = StoryBook(id: "test", storyteller: "Pipa", title: "Salta", englishTitle: "Jump",
-            spanishPassages: ["Pipa salta alto."])
+        let book = try #require(library.books.first)
         await model.prepare(book, reduceMotion: true).value
         model.recordLanding(at: 0, word: "Pipa")
         model.showDeath(coins: 4, seconds: 125)

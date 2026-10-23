@@ -3,21 +3,45 @@ import SwiftUI
 struct LibraryView: View {
     @Environment(ThemeManager.self) private var themeManager
     @State private var viewModel = LibraryViewModel()
-    @State private var selectedBook: StoryBook?
 
     var body: some View {
+        @Bindable var viewModel = viewModel
         NavigationStack {
             Group {
                 if viewModel.books.isEmpty, viewModel.isLoading {
-                    ProgressView("Building the story map…")
+                    ProgressView("Opening the gates…")
+                        .tint(themeManager.worldAccent)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else { storyMap }
             }
-            .background(themeManager.background)
-            .navigationTitle("Word Leap")
+            .foregroundStyle(themeManager.worldText)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                HStack {
+                    Spacer()
+                    HStack(spacing: 7) {
+                        DoubloonArtwork(size: 30)
+                        Text(viewModel.doubloonBalance, format: .number)
+                            .font(.headline.monospacedDigit())
+                            .foregroundStyle(themeManager.worldText)
+                    }
+                    .shadow(color: .black.opacity(0.85), radius: 4, y: 1)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("\(viewModel.doubloonBalance) doubloons")
+                    .allowsHitTesting(false)
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 8)
+            }
+            .background { WorldBackdrop() }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbar(.hidden, for: .navigationBar)
             .task { await viewModel.load().value }
             .onAppear { _ = viewModel.refreshProgress() }
-            .navigationDestination(item: $selectedBook) { book in GameView(book: book) }
+            .navigationDestination(item: $viewModel.selectedBook) { book in GameView(book: book) }
         }
+        .preferredColorScheme(.dark)
     }
 
     private var storyMap: some View {
@@ -25,28 +49,25 @@ struct LibraryView: View {
             LazyVStack(spacing: 0) {
                 LibraryMapHeader(
                     bookCount: viewModel.books.count,
-                    conqueredCount: viewModel.completedBookIDs.count
+                    conqueredCount: viewModel.conqueredCount
                 )
 
                 if let errorMessage = viewModel.errorMessage {
                     Label(errorMessage, systemImage: "exclamationmark.triangle.fill")
                         .font(.subheadline)
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(themeManager.worldAccent)
                         .padding(14)
-                        .background(.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 16))
+                        .worldPanel(cornerRadius: 16)
                         .padding(.horizontal, 20)
                         .padding(.bottom, 20)
                 }
 
-                ForEach(Array(viewModel.books.enumerated()), id: \.element.id) { index, book in
-                    Button { selectedBook = book } label: {
-                        StoryOutpost(
-                            book: book,
-                            index: index,
-                            isConquered: viewModel.completedBookIDs.contains(book.id)
-                        )
+                ForEach(viewModel.castles) { castle in
+                    Button { viewModel.select(castle.book) } label: {
+                        StoryOutpost(castle: castle)
                     }
                     .buttonStyle(.plain)
+                    .disabled(!castle.isUnlocked)
                 }
             }
             .padding(.bottom, 34)
@@ -57,32 +78,43 @@ struct LibraryView: View {
 }
 
 private struct LibraryMapHeader: View {
+    @Environment(ThemeManager.self) private var themeManager
     let bookCount: Int
     let conqueredCount: Int
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("CUENTIVA STORY MAP")
+            Text("THE WORLD OF CUENTIVA")
                 .font(.caption.weight(.bold))
                 .tracking(1.8)
-                .foregroundStyle(.secondary)
-            Text("Choose your next\nadventure.")
-                .font(.system(size: 34, weight: .bold, design: .rounded))
-            Text("Every book is a climb through its Spanish words.")
+                .foregroundStyle(themeManager.worldAccent)
+            HStack(alignment: .center, spacing: 10) {
+                Text("Every castle,\na new story.")
+                    .font(.system(.largeTitle, design: .serif, weight: .semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Image("WordLeapPipa")
+                    .resizable().scaledToFit()
+                    .frame(width: 100, height: 110)
+                    .shadow(color: themeManager.worldAccent.opacity(0.3), radius: 16)
+                    .accessibilityHidden(true)
+            }
+            Text("Complete each castle to unlock the next adventure.")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(themeManager.worldSecondaryText)
             HStack(spacing: 8) {
-                Label("\(bookCount) worlds", systemImage: "map.fill")
+                Label("\(bookCount) castles", systemImage: "map.fill")
                 Text("·")
                 Label("\(conqueredCount) conquered", systemImage: "flag.checkered")
             }
             .font(.caption.weight(.semibold))
-            .foregroundStyle(.secondary)
+            .foregroundStyle(themeManager.worldAccent)
             .padding(.top, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, 24)
-        .padding(.top, 18)
-        .padding(.bottom, 26)
+        .padding(22)
+        .worldPanel(cornerRadius: 26)
+        .padding(.horizontal, 20)
+        .padding(.top, 24)
+        .padding(.bottom, 14)
     }
 }

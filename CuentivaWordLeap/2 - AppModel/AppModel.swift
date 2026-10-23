@@ -24,7 +24,7 @@ final class AppModel {
         )
         let wordLeapFeature = WordLeapFeature(
             levelPlanBuilder: levelPlanBuilder,
-            levelProgressStore: levelProgressStore
+            libraryFeature: libraryFeature
         )
         return AppModel(libraryFeature: libraryFeature, wordLeapFeature: wordLeapFeature, settingsFeature: SettingsFeature())
     }

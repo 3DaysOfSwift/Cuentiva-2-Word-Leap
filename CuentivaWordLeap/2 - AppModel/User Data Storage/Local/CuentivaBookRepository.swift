@@ -3,14 +3,19 @@ import Foundation
 actor CuentivaBookRepository {
     private let networkingManager: NetworkingManager
     private var cachedBooks: [StoryBook]?
+    private let bundledStoriesURL: URL?
     private let githubStoriesURL = URL(string: "https://raw.githubusercontent.com/3DaysOfSwift/Cuentiva/main/content/editorial/stories.txt")
 
-    init(networkingManager: NetworkingManager) { self.networkingManager = networkingManager }
+    init(networkingManager: NetworkingManager,
+         bundledStoriesURL: URL? = Bundle.main.url(forResource: "stories", withExtension: "txt")) {
+        self.networkingManager = networkingManager
+        self.bundledStoriesURL = bundledStoriesURL
+    }
 
     func books() throws -> [StoryBook] {
         if let cachedBooks { return cachedBooks }
         // Xcode copies files from the synchronized resource group to the app bundle root.
-        guard let bundledURL = Bundle.main.url(forResource: "stories", withExtension: "txt") else {
+        guard let bundledURL = bundledStoriesURL else {
             throw CocoaError(.fileNoSuchFile)
         }
         let books = try Self.decode(Data(contentsOf: bundledURL), covers: bundledCovers())

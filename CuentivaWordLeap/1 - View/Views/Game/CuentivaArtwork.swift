@@ -39,10 +39,12 @@ struct CompletedBookCover: View {
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            CuentivaArtwork.coverColours[max(0, book.cover.palette) % CuentivaArtwork.coverColours.count]
+            Image(book.backgroundAssetName)
+                .resizable().scaledToFill().frame(width: 190, height: 260)
+                .overlay(.black.opacity(0.4))
                 .overlay {
-                    Circle().stroke(.white.opacity(0.12), lineWidth: 35)
-                        .frame(width: 180, height: 180).offset(x: 65, y: 85)
+                    LinearGradient(colors: [.black.opacity(0.55), .clear, .black.opacity(0.5)],
+                                   startPoint: .top, endPoint: .bottom)
                 }
             Rectangle().fill(.black.opacity(0.1)).frame(width: 8)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -68,6 +70,10 @@ struct CompletedBookCover: View {
         }
         .frame(width: 190, height: 260)
         .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay {
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(CuentivaArtwork.coinHighlight.opacity(0.6), lineWidth: 1)
+        }
         .shadow(color: .black.opacity(0.35), radius: 18, y: 10)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(book.title), by \(book.storyteller)")
@@ -75,6 +81,7 @@ struct CompletedBookCover: View {
 }
 
 struct BookCompletionReveal: View {
+    @Environment(ThemeManager.self) private var themeManager
     let book: StoryBook
     let title: String
     let coins: Int
@@ -101,17 +108,17 @@ struct BookCompletionReveal: View {
                             Label("Read the book", systemImage: "book.fill")
                                 .frame(maxWidth: .infinity).padding(.vertical, 15)
                         }
-                        .background(.white.opacity(0.16), in: Capsule())
+                        .worldPanel(cornerRadius: 28)
                         Button(action: hasNextLevel ? next : leave) {
                             Label(hasNextLevel ? "Next level" : "Adventure", systemImage: "arrow.right")
                                 .frame(maxWidth: .infinity).padding(.vertical, 15)
                         }
-                        .foregroundStyle(.black)
-                        .background(CuentivaArtwork.coinGold, in: Capsule())
+                        .foregroundStyle(themeManager.worldShadow)
+                        .background(themeManager.worldAccent, in: Capsule())
                     }
                     .font(.subheadline.weight(.bold)).buttonStyle(.plain)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(themeManager.worldText)
                 .padding(24)
                 .frame(maxWidth: 460)
                 .frame(maxWidth: .infinity)
@@ -121,26 +128,38 @@ struct BookCompletionReveal: View {
     }
 }
 
-/// Plain book content, presented by the game after the completed-book reveal.
+/// An illuminated reading surface inside the same world as the adventure.
 struct CompletedBookPages: View {
+    @Environment(ThemeManager.self) private var themeManager
     let book: StoryBook
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 CompletedBookCover(book: book).frame(maxWidth: .infinity)
-                Text(book.englishTitle).font(.title2).foregroundStyle(.secondary)
+                Text(book.englishTitle)
+                    .font(.system(.title2, design: .serif))
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .padding(18).worldPanel()
                 ForEach(book.spanishPassages.indices, id: \.self) { index in
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(book.spanishPassages[index]).font(.title3)
+                        Text(book.spanishPassages[index])
+                            .font(.system(.title3, design: .serif)).lineSpacing(5)
                         if book.englishPassages.indices.contains(index), !book.englishPassages[index].isEmpty {
-                            Text(book.englishPassages[index]).foregroundStyle(.secondary)
+                            Text(book.englishPassages[index])
+                                .foregroundStyle(themeManager.worldSecondaryText).lineSpacing(4)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(22).worldPanel()
                 }
             }
+            .frame(maxWidth: 660)
             .padding(24)
+            .frame(maxWidth: .infinity)
         }
+        .foregroundStyle(themeManager.worldText)
+        .background { WorldBackdrop(shade: 0.32) }
     }
 }

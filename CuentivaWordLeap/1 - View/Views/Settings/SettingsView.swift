@@ -8,39 +8,78 @@ struct SettingsView: View {
         @Bindable var themeManager = themeManager
 
         NavigationStack {
-            List {
-                Section("Appearance") {
-                    Picker("Colour theme", selection: $themeManager.selectedTheme) {
-                        ForEach(WordLeapTheme.allCases) { theme in
-                            Text(theme.title).tag(theme)
-                        }
+            ScrollView {
+                VStack(spacing: 24) {
+                    VStack(spacing: 8) {
+                        Image("WordLeapTilo")
+                            .resizable().scaledToFit().frame(height: 140)
+                            .shadow(color: themeManager.worldAccent.opacity(0.3), radius: 18)
+                            .accessibilityHidden(true)
+                        Text("A moment at camp")
+                            .font(.system(.largeTitle, design: .serif, weight: .semibold))
+                        Text("Make this little world your own.")
+                            .font(.subheadline).foregroundStyle(themeManager.worldSecondaryText)
                     }
-                }
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 16)
 
-                Section("About") {
-                    LabeledContent("App") {
-                        Label("Cuentiva 2: Word Leap", systemImage: "figure.jump.rope")
-                            .foregroundStyle(themeManager.tint)
-                    }
-                    LabeledContent("Learning content") {
-                        Text(viewModel.contentAttribution)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.secondary)
-                    }
-                    LabeledContent("Architecture") {
-                        VStack(alignment: .trailing, spacing: 2) {
-                            Text(viewModel.architecture)
-                            Text("Built with SwiftUI and SpriteKit.")
-                                .font(.caption)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("APPEARANCE")
+                            .font(.caption.weight(.heavy)).tracking(2)
+                            .foregroundStyle(themeManager.worldAccent)
+                        Picker("Colour theme", selection: $themeManager.selectedTheme) {
+                            ForEach(WordLeapTheme.allCases) { theme in
+                                Text(theme.title).tag(theme)
+                            }
                         }
-                        .foregroundStyle(.secondary)
+                        .pickerStyle(.menu)
+                        .tint(themeManager.worldAccent)
                     }
-                    LabeledContent("Version", value: viewModel.version)
+                    .padding(22)
+                    .worldPanel()
+
+                    VStack(alignment: .leading, spacing: 18) {
+                        Text("ABOUT THIS WORLD")
+                            .font(.caption.weight(.heavy)).tracking(2)
+                            .foregroundStyle(themeManager.worldAccent)
+                        LabeledContent("App") {
+                            Text("Cuentiva 2: Word Leap")
+                                .multilineTextAlignment(.trailing)
+                                .foregroundStyle(themeManager.worldAccent)
+                        }
+                        Divider().overlay(themeManager.worldAccent.opacity(0.3))
+                        LabeledContent("Learning content") {
+                            Text(viewModel.contentAttribution)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundStyle(themeManager.worldSecondaryText)
+                        }
+                        Divider().overlay(themeManager.worldAccent.opacity(0.3))
+                        LabeledContent("Architecture") {
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Text(viewModel.architecture)
+                                Text("Built with SwiftUI and SpriteKit.").font(.caption)
+                            }
+                            .multilineTextAlignment(.trailing)
+                            .foregroundStyle(themeManager.worldSecondaryText)
+                        }
+                        Divider().overlay(themeManager.worldAccent.opacity(0.3))
+                        LabeledContent("Version") {
+                            Text(viewModel.version).foregroundStyle(themeManager.worldSecondaryText)
+                        }
+                    }
+                    .padding(22)
+                    .worldPanel()
                 }
+                .frame(maxWidth: 580)
+                .padding(24)
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, 24)
             }
-            .scrollContentBackground(.hidden)
-            .background(themeManager.background)
+            .foregroundStyle(themeManager.worldText)
+            .background { WorldBackdrop(shade: 0.27) }
             .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
+            .worldNavigation()
         }
     }
 }
