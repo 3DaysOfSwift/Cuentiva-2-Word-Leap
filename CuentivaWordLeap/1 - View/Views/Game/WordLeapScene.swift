@@ -13,7 +13,7 @@ final class WordLeapScene: SKScene {
     private var coinNodes: [Int: SKSpriteNode] = [:]
     private let player = SKSpriteNode(imageNamed: "WordLeapHero")
     private let cameraNode = SKCameraNode()
-    private let sky = SKSpriteNode(imageNamed: "WordLeapSky")
+    private let sky: SKSpriteNode
     private let platformLayer = SKNode()
     private var simulation: WordLeapSimulation
     private var steeringTargetX: CGFloat?
@@ -29,6 +29,7 @@ final class WordLeapScene: SKScene {
         reportLanding: @escaping @MainActor (_ wordIndex: Int, _ word: String) -> Void
     ) {
         self.levelPlan = levelPlan
+        sky = SKSpriteNode(imageNamed: levelPlan.book.backgroundAssetName)
         self.reportLanding = reportLanding
         self.reportDeath = reportDeath
         self.reportCoinCount = reportCoinCount

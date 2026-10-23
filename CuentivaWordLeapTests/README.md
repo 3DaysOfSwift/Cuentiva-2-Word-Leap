@@ -1,5 +1,10 @@
 # Tests
 
+`BookBackgroundTests` checks the first ten catalogue IDs and distinct scenery,
+stable mapping after title/order changes, and the original-sky fallback for the
+remaining/new books. Its UIKit-only test loads all eleven backgrounds from the
+compiled asset catalogue; it is excluded from macOS model-test execution.
+
 `GameCharacterTests` verifies all nine cast identities, complete profiles, book lookup,
 unknown-storyteller fallback and the feature's read-only catalogue. The UIKit-only
 artwork test checks that every portrait and transparent sprite loads from the compiled

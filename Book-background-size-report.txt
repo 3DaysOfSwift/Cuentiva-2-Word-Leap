@@ -1,0 +1,37 @@
+First ten book backgrounds — 23 October 2026
+
+Comparable unsigned Release builds, generic iOS device, same scheme and settings.
+Baseline source commit: 9161b1f.
+Units below are decimal MB (1 MB = 1,000,000 bytes).
+
+                         Before         After          Increase
+Complete .app bytes      23,647,610     29,605,386       5,957,776
+Complete .app MB              23.65          29.61            5.96
+Compiled Assets.car      22,084,008     28,041,640       5,957,632
+
+Ten added source JPEGs: 5,953,460 bytes total (5.95 MB).
+Average source background: 595,346 bytes (~0.60 MB).
+JPEG quality 85; original generated dimensions preserved.
+Original PNGs are not copied into the application target.
+See Book-background-artwork.json for prompts, original paths and final asset paths.
+
+Build command (run from the project directory):
+xcodebuild -project 'Cuentiva Word Leap.xcodeproj' -scheme 'Cuentiva Word Leap' -sdk iphoneos -destination 'generic/platform=iOS' -configuration Release -derivedDataPath /private/tmp/word-leap-background-size build CODE_SIGNING_ALLOWED=NO -quiet
+
+Measured product:
+/private/tmp/word-leap-background-size/Build/Products/Release-iphoneos/CuentivaWordLeap.app
+
+Method: sum File.size of every regular file recursively within the .app.
+The adjacent dSYM is excluded; this Release build does not embed the test bundle.
+This is an uncompressed build-product measurement, NOT an App Store download size,
+signed archive, app-thinning report or measurement of user data on a real device.
+
+Behaviour: first ten catalogue books use distinct backgrounds keyed by stable ID.
+Other 42 books and future unknown books retain the original WordLeapSky.
+No changes to jumping, collision, word ordering, rewards or save data.
+
+Validation: Release build succeeded. macOS production-model test package passed
+27 tests in nine suites, including catalogue mapping, fallback and unchanged physics.
+The hosted iOS artwork-loading test is compiled separately; it requires an iOS
+test run to verify UIImage loading at runtime. Physical-device visual playtest
+is still required for HUD contrast, cropping and transitions between books.
