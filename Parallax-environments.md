@@ -1,28 +1,41 @@
 # Book environment packs
 
-All 52 books now use layered backgrounds. The first ten have individual story
-settings; the remaining 42 share the approved Sky Falls pack. Unknown future
-book IDs also fall back to Sky Falls. There is no new selection screen.
+All 52 books use layered backgrounds, revealed gradually through the adventure.
+Assignments are fixed to stable book IDs, not play counts or completion counts.
+A retry, replay, title edit or catalogue reorder keeps the same environment.
+Unknown future book IDs use Sky Falls until deliberately assigned.
+
+## Progressive reveal
+
+| First appearance | Environment | Debut book |
+| --- | --- | --- |
+| Books 1–10 | Sky Falls | El viaje de Pipa |
+| 11 | Coast | La lluvia sobre el escenario |
+| 16 | Roots | La silla de la ventana |
+| 21 | Railway | Una luz para dos |
+| 26 | Puddle | El reloj del invernadero |
+| 31 | Observatory | El brindis del farero |
+| 36 | Harbour | La etiqueta escondida |
+| 41 | Theatre | La escalera de niebla |
+| 46 | Orchard | El último ensayo |
+| 51 | Storm | El farol de la playa |
+| 52 | Letters — finale | La toalla y el billete |
+
+Between debuts, previously introduced packs rotate in a fixed order without
+consecutive repeats. Books 11–15 alternate Coast/Sky Falls; books 16–20 use
+Roots/Sky Falls/Coast/Roots/Sky Falls. Later groups draw from the growing pool.
+Each new pack gets its debut before joining the rotation.
+
+This is scenery pacing, not an access-locking system: the existing Adventure
+selection remains unchanged. Choosing a later book directly shows its assigned
+environment. No progress migration, reward change or new unlock storage is needed.
 
 ## Try the environments
 
-Rebuild in Xcode, open Adventure, and play any book. Climb several platforms:
+Rebuild in Xcode and play book 1 to see Sky Falls, book 11 for Coast, or book 16
+for Roots. Other debut books are listed above. Climb several platforms:
 landmarks should move slowly behind the faster foreground, while the distant
 backdrop stays fixed. These are camera-driven effects, not tilt controls.
-
-| Book | Environment |
-| --- | --- |
-| El viaje de Pipa | Coast: palms and a coastal cottage |
-| La puerta bajo las raíces | Roots: a root doorway and mossy woodland |
-| El billete de vuelta | Railway: a train viaduct and station |
-| Un barco para una mosca | Puddle: clover and a walnut-shell boat |
-| La luz del observatorio | Observatory: a dome and weathered ruins |
-| La campana sin voz | Harbour: a bell and lighthouse |
-| El cuaderno de los favores | Theatre: a puppet theatre and riverside house |
-| El mapa de los errores | Orchard: a blue doorway and orange branches |
-| Tres caminos y una tormenta | Storm: a broken bridge and shelter |
-| Las cartas sin nombre | Letters: a mushroom house and letter-writing supplies |
-| Books 11–52, starting with La lluvia sobre el escenario | Sky Falls |
 
 ## Composition and behaviour
 
@@ -46,8 +59,8 @@ Active play time drives twinkling, so background time is not counted.
 `GameView → GameViewModel → AppModel.wordLeapFeature` remains unchanged.
 Book loading stays with `AppModel.libraryFeature → CuentivaBookRepository`.
 
-- `StoryBook.environment` assigns environments by stable book ID.
-- `BookEnvironment` names packs and their backdrops.
+- `StoryBook.environment` reads the shared assignment policy.
+- `BookEnvironment` owns stable book-ID assignments, pack names and backdrops.
 - `ParallaxSceneryRecipe` declares artwork, depth, density and particles.
 - `ParallaxBackgroundNode` renders SpriteKit scenery.
 - `ParallaxLayout` calculates camera-relative recycling geometry.
@@ -80,7 +93,19 @@ The ten original flat paintings are preserved under
 These are source-image sizes, not compiled app or App Store download sizes.
 A current compiled size is unavailable because asset compilation is blocked.
 
-## Verification — 23 October 2026
+## Progressive assignment verification — 23 October 2026
+
+- Six focused background tests passed, covering all 52 assignments, reveal
+  boundaries, no consecutive repeats after book 10, replay stability and unknown IDs.
+- The broader macOS model/simulation suite passed **40 tests in 11 suites**,
+  including every book's reachability at 30/60/120 fps across five viewports.
+- All production Swift sources type-checked against the iOS SDK.
+- The Release build failed at launch-screen compilation with
+  `iOS 26.2 Platform Not Installed` and CoreSimulator connection errors.
+  No installed-app playtest or hosted iOS test run was completed.
+- Logs: `/private/tmp/word-leap-progression-{tests,typecheck,build}.log`.
+
+## Earlier artwork verification — 23 October 2026
 
 - **37 tests in 11 suites passed** in a temporary macOS package using production
   model, simulation, recipe and layout files. This includes all 52 books across

@@ -1,8 +1,10 @@
 # Tests
 
-`BookBackgroundTests` checks the first ten catalogue IDs and distinct scenery,
-stable mapping after title/order changes, and the shared Sky Falls pack for the
-remaining/new books. Its UIKit-only tests load all eleven backdrops and check
+`BookBackgroundTests` checks all 52 fixed book assignments: Sky Falls for 1–10,
+new packs at books 11/16/21/26/31/36/41/46/51 and the Letters finale at 52.
+It checks no early reveals or consecutive repeats after the introduction, stable
+replays after title/order changes, and Sky Falls for unknown future IDs.
+Its UIKit-only tests load all eleven backdrops and check
 all 23 cutouts' alpha channels and decoded transparent pixels in the compiled
 asset catalogue (20 new story cutouts plus the three Sky Falls sprites).
 

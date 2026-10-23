@@ -18,21 +18,7 @@ struct StoryBook: Identifiable, Hashable, Sendable {
 
     var backgroundAssetName: String { environment.backdropAssetName }
 
-    var environment: BookEnvironment {
-        switch id {
-        case "cafe": .coast
-        case "garden": .roots
-        case "train": .railway
-        case "sea": .puddle
-        case "repair": .observatory
-        case "repair-hour": .harbour
-        case "loan-notebook": .theatre
-        case "small-guide": .orchard
-        case "three-paths": .storm
-        case "three-envelopes": .letters
-        default: .skyFalls
-        }
-    }
+    var environment: BookEnvironment { BookEnvironment.forBook(id: id) }
 }
 
 struct StoryBookCover: Codable, Hashable, Sendable {

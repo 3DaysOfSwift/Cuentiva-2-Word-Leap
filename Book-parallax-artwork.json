@@ -1,7 +1,7 @@
 {
   "date": "2026-10-23",
   "tool": "image_gen.imagegen (built-in)",
-  "purpose": "Ten book-specific layered environments. Each has a clean distant backdrop and two transparent scenery clusters; Sky Falls remains the shared pack for the other 42 bundled books.",
+  "purpose": "Ten reusable layered environments, each inspired by a book painting, with a clean backdrop and two transparent scenery clusters. Adventure introduces them progressively after ten Sky Falls books; see Parallax-environments.md for the current assignment schedule.",
   "preservation": "The original ten static paintings are retained under Artwork/OriginalBackgrounds, outside the app target.",
   "assets": [
     {
