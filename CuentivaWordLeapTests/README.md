@@ -1,9 +1,20 @@
 # Tests
 
 `BookBackgroundTests` checks the first ten catalogue IDs and distinct scenery,
-stable mapping after title/order changes, and the original-sky fallback for the
-remaining/new books. Its UIKit-only test loads all eleven backgrounds from the
-compiled asset catalogue; it is excluded from macOS model-test execution.
+stable mapping after title/order changes, and the shared Sky Falls pack for the
+remaining/new books. Its UIKit-only tests load all eleven backdrops and check
+all 23 cutouts' alpha channels and decoded transparent pixels in the compiled
+asset catalogue (20 new story cutouts plus the three Sky Falls sprites).
+
+`PresentationTests/ParallaxLayoutTests.swift` checks camera-driven movement,
+depth ratios, offscreen wrapping, long climbs, frame-rate independence, retry
+positioning, viewport changes and Reduce Motion. It runs in the macOS package.
+`ParallaxSceneryRecipeTests` checks every pack's unique artwork, bounded density,
+increasing depth speeds, an open central corridor and setting-specific particles.
+`ParallaxBackgroundNodeTests` checks all eleven packs: bounded node counts,
+no physics bodies, relayout, depth-specific movement, still scenery with Reduce
+Motion, correct cutout selection and stationary distant backdrops.
+That suite requires the hosted iOS test target; it is not a UI test target.
 
 `GameCharacterTests` verifies all nine cast identities, complete profiles, book lookup,
 unknown-storyteller fallback and the feature's read-only catalogue. The UIKit-only

@@ -13,7 +13,7 @@ final class WordLeapScene: SKScene {
     private var coinNodes: [Int: SKSpriteNode] = [:]
     private let player = SKSpriteNode(imageNamed: "WordLeapHero")
     private let cameraNode = SKCameraNode()
-    private let sky: SKSpriteNode
+    private let scenery: ParallaxBackgroundNode
     private let platformLayer = SKNode()
     private var simulation: WordLeapSimulation
     private var steeringTargetX: CGFloat?
@@ -29,7 +29,7 @@ final class WordLeapScene: SKScene {
         reportLanding: @escaping @MainActor (_ wordIndex: Int, _ word: String) -> Void
     ) {
         self.levelPlan = levelPlan
-        sky = SKSpriteNode(imageNamed: levelPlan.book.backgroundAssetName)
+        scenery = ParallaxBackgroundNode(environment: levelPlan.book.environment, reduceMotion: reduceMotion)
         self.reportLanding = reportLanding
         self.reportDeath = reportDeath
         self.reportCoinCount = reportCoinCount
@@ -47,8 +47,7 @@ final class WordLeapScene: SKScene {
         backgroundColor = SKColor(red: 0.03, green: 0.10, blue: 0.26, alpha: 1)
         addChild(cameraNode)
         camera = cameraNode
-        sky.zPosition = -100
-        cameraNode.addChild(sky)
+        cameraNode.addChild(scenery)
         addChild(platformLayer)
         addPlayer()
         layoutWorld()
@@ -63,9 +62,7 @@ final class WordLeapScene: SKScene {
     private func layoutWorld() {
         // With a camera, (0, 0) is the centre of the viewport, not its lower-left.
         cameraNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        let textureSize = sky.texture?.size() ?? CGSize(width: 1, height: 1)
-        let scale = max(size.width / textureSize.width, size.height / textureSize.height)
-        sky.size = CGSize(width: textureSize.width * scale, height: textureSize.height * scale)
+        scenery.layout(in: size)
         platformLayer.removeAllChildren()
         simulation = WordLeapSimulation(words: levelPlan.words, viewport: size,
             checkpointIndex: simulation.furthestPlatformIndex, collectedCoins: simulation.collectedCoins,
@@ -73,6 +70,7 @@ final class WordLeapScene: SKScene {
         makePlatforms()
         makeCoins()
         returnToCheckpoint()
+        updateScenery()
         lastUpdateTime = 0
     }
 
@@ -175,6 +173,7 @@ final class WordLeapScene: SKScene {
         player.position = simulation.position
         cameraNode.position.x = size.width / 2
         cameraNode.position.y = max(cameraNode.position.y, player.position.y + size.height * 0.08)
+        updateScenery()
         if let landing { reportProgress(at: landing) }
 
         if simulation.detectFall(below: cameraNode.position.y - size.height / 2 - player.size.height) {
@@ -184,6 +183,11 @@ final class WordLeapScene: SKScene {
     }
 
     func resetFrameClock() { lastUpdateTime = 0 }
+
+    private func updateScenery() {
+        scenery.update(cameraClimb: cameraNode.position.y - size.height / 2,
+                       activeSeconds: simulation.activeSeconds)
+    }
 
     private func showSkeletonTransformation() {
         player.removeAllActions()

@@ -1,0 +1,30 @@
+{
+  "tool": "Built-in image_gen",
+  "reference": "CuentivaWordLeap/Assets.xcassets/WordLeapSky.imageset/word-leap-sky.png",
+  "assets": [
+    {
+      "asset": "SkyFallsBackdrop",
+      "file": "CuentivaWordLeap/Assets.xcassets/SkyFallsBackdrop.imageset/SkyFallsBackdrop.jpg",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-450c35de-3262-45f0-bf25-89ff154c9d2f.png",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target: our original fantasy game sky. Create its clean background plate for a parallax game. Preserve the portrait composition, golden sunset at top, deep cobalt and indigo open central sky, dreamy blue-purple clouds with peach sunlight. REMOVE EVERY floating rock island, waterfall, and every star/sparkle; reconstruct only sky/clouds behind them. Also remove the nearest heavy clouds from lower corners, leaving only distant soft cloud banks at edges. No rocks, no waterfalls, no stars, no text, no characters, no UI. Retain the original painterly lush polished game-art style. Tall portrait 9:16."
+    },
+    {
+      "asset": "SkyFallsIsland",
+      "file": "CuentivaWordLeap/Assets.xcassets/SkyFallsIsland.imageset/SkyFallsIsland.png",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-c5478b38-e375-4009-b388-72d07dbb114a.png",
+      "prompt": "Use case: background-extraction. Image 1 is the edit target/style reference. Extract and reconstruct ONE of its large left-edge floating waterfall islands as a self-contained game sprite. Full island visible, no cropping: lush green leafy cap over faceted blue-violet suspended rock, a single long slender luminous white-blue waterfall flowing down into a small wispy mist base. Gold sunset rim lighting from upper right. Preserve original charming painted 3D fantasy style and colours. Tall narrow composition with generous clear margin. Only one island and its waterfall and mist on a genuinely TRANSPARENT background. No sky, no clouds surrounding it, no stars, no ground plane, no text, no characters, no checkerboard."
+    },
+    {
+      "asset": "SkyFallsIslet",
+      "file": "CuentivaWordLeap/Assets.xcassets/SkyFallsIslet.imageset/SkyFallsIslet.png",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-f2c6c235-f356-4a07-a964-3627d696819d.png",
+      "prompt": "Use case: background-extraction. Image 1 is edit target/style reference. Extract and reconstruct ONE SMALL distant floating island from the upper-right quarter of this fantasy game background, as an isolated game sprite. Full object contained with margin: mossy leafy green top, tapered blue-violet rock underside, two thin trailing waterfalls dissolving into transparent air. Soft warm peach sunset rimlight. Preserve painterly whimsical high quality original art. ONE object only, no sky, no clouds, no stars, no words, no UI, no checkerboard, genuinely TRANSPARENT background. Square composition."
+    },
+    {
+      "asset": "SkyFallsCloud",
+      "file": "CuentivaWordLeap/Assets.xcassets/SkyFallsCloud.imageset/SkyFallsCloud.png",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-f939252f-a031-4a1c-a99d-82ac3d5f0803.png",
+      "prompt": "Use case: background-extraction. Image 1 is edit target/style reference. Extract and reconstruct ONE fluffy cloud bank from its lower left corner as a standalone foreground sprite for a parallax game. Puffy rounded cobalt blue and lavender volume, softly peach-gold rimlit along upper edge. Soft fading translucent edges all around, entirely inside canvas with transparent margin. Preserve the original painterly polished fantasy game style. Wide cloud bank composition. Genuinely TRANSPARENT background; no sky, no islands, no waterfalls, no stars, no text, no UI, no checkerboard."
+    }
+  ]
+}

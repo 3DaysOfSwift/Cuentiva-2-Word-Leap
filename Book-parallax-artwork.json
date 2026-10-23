@@ -1,0 +1,287 @@
+{
+  "date": "2026-10-23",
+  "tool": "image_gen.imagegen (built-in)",
+  "purpose": "Ten book-specific layered environments. Each has a clean distant backdrop and two transparent scenery clusters; Sky Falls remains the shared pack for the other 42 bundled books.",
+  "preservation": "The original ten static paintings are retained under Artwork/OriginalBackgrounds, outside the app target.",
+  "assets": [
+    {
+      "asset": "CoastBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundCafe.imageset/cafe.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its sunset Mediterranean coast, turquoise sea and hazy distant mountains, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-57d29c04-ee23-4631-96df-324ce9f3db11.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/CoastBackdrop.imageset/CoastBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "CoastLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundCafe.imageset/cafe.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a lush rocky coastal outcrop with a small white terracotta-roofed seaside cottage and palm tree. Match the reference's sunset Mediterranean coast, turquoise sea and hazy distant mountains lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-b00d3574-8949-4cba-af60-f75391cd08d7.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/CoastLandmark.imageset/CoastLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "RootsBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundGarden.imageset/garden.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its enchanted deep teal forest, distant soft tree silhouettes and warm sunbeams, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-372b1f5a-3551-441d-a172-9e41d4c09ec7.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/RootsBackdrop.imageset/RootsBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "RootsForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundGarden.imageset/garden.jpg",
+      "prompt": "Edit this transparent scenery cutout for the forest parallax pack. Keep the painterly moss, ferns, glowing pale yellow mushrooms and dark teal/gold lighting. Replace the tall trunk that is cropped by the top edge with a LOW curved root growing across a compact tapered floating mossy rock. The entire root/rock/fern/mushroom cluster must be fully visible, surrounded by at least 6% completely transparent margin on every side. Nothing touches any canvas edge. No tall cut-off tree, no square crop, no coloured background, no outer glow haze. Genuine transparent background. One compact landscape-ish organically shaped cluster, about 4:3 aspect ratio.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-cfe45abb-31f3-4011-b589-4a280ecb5b5f.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/RootsForeground.imageset/RootsForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px",
+      "editTarget": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-d187192b-7247-4e1c-8413-f9c0e9427247.png"
+    },
+    {
+      "asset": "CoastForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundCafe.imageset/cafe.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a curving palm with lush tropical foliage growing from a small weathered seaside rock. Match the reference's sunset Mediterranean coast, turquoise sea and hazy distant mountains lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-293b73c2-2c8f-4819-ae0f-eb6f1db1de98.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/CoastForeground.imageset/CoastForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "RootsLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundGarden.imageset/garden.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: an ancient twisting tree root arch with a tiny glowing golden doorway, mossy rock base. Match the reference's enchanted deep teal forest, distant soft tree silhouettes and warm sunbeams lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-abf5bf12-432a-4c31-a2ee-42f881bb72c8.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/RootsLandmark.imageset/RootsLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "RailwayBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundTrain.imageset/train.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its blue and violet twilight alpine valley, distant hazy mountains and soft mist, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-b6ee35dc-23f6-4764-bf2d-79cb6a97dcb3.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/RailwayBackdrop.imageset/RailwayBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "RailwayLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundTrain.imageset/train.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a short stone railway viaduct on a narrow rocky outcrop, tiny warmly lit train, evergreen trees. Match the reference's blue and violet twilight alpine valley, distant hazy mountains and soft mist lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-27fd9c18-5ba8-4cd4-9f76-5cc28f4f6b1a.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/RailwayLandmark.imageset/RailwayLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "RailwayForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundTrain.imageset/train.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a tiny warm timber railway station on a pine-covered rocky outcrop. Match the reference's blue and violet twilight alpine valley, distant hazy mountains and soft mist lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-67a238b0-23a9-4661-a7a7-0c7f5fd2f90e.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/RailwayForeground.imageset/RailwayForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "PuddleBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundSea.imageset/sea.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its tiny-world teal pond viewed at water level, distant blurred reeds, rainy soft grey sky, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-a8e4148f-6ab9-49f9-918b-5037fd903c53.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/PuddleBackdrop.imageset/PuddleBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "PuddleLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundSea.imageset/sea.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a wet smooth pebble outcrop with tall clover stems and fresh dew drops. Match the reference's tiny-world teal pond viewed at water level, distant blurred reeds, rainy soft grey sky lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-081fd475-91df-4570-b566-5465f038db30.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/PuddleLandmark.imageset/PuddleLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "PuddleForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundSea.imageset/sea.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a tiny walnut-shell sailboat resting beside a small reed-and-pebble island, pale green leaf sail. Match the reference's tiny-world teal pond viewed at water level, distant blurred reeds, rainy soft grey sky lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-3a747778-0218-4fea-af1f-2bfac530ff92.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/PuddleForeground.imageset/PuddleForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "ObservatoryBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundRepair.imageset/repair.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its deep indigo violet night sky and soft distant mountain silhouettes, subtle milky way haze, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-6f29201f-1e79-4adc-a691-bebf0916f825.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/ObservatoryBackdrop.imageset/ObservatoryBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "ObservatoryLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundRepair.imageset/repair.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a warm glowing copper-domed observatory on a narrow blue rocky outcrop. Match the reference's deep indigo violet night sky and soft distant mountain silhouettes, subtle milky way haze lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-8d0de4bb-d87a-45d6-8d50-9a625809a697.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/ObservatoryLandmark.imageset/ObservatoryLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "ObservatoryForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundRepair.imageset/repair.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: an ancient broken stone arch with cypress trees on a small midnight-blue rocky ledge. Match the reference's deep indigo violet night sky and soft distant mountain silhouettes, subtle milky way haze lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-932bf44f-b46a-45b1-9bb4-586ee1abcafe.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/ObservatoryForeground.imageset/ObservatoryForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "HarbourBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundRepairHour.imageset/repair-hour.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its misty blue harbour and sea, rose-gold sunset sky and very distant soft cliff silhouettes, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-698c8402-d38a-4d30-bbab-c03a7c8c9b7d.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/HarbourBackdrop.imageset/HarbourBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "HarbourLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundRepairHour.imageset/repair-hour.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a weathered stone bell arch with a bronze bell, colourful fabric rope and trailing flowers on a rocky ledge. Match the reference's misty blue harbour and sea, rose-gold sunset sky and very distant soft cliff silhouettes lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-29640981-0e34-44aa-8625-6e83784204ac.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/HarbourLandmark.imageset/HarbourLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "HarbourForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundRepairHour.imageset/repair-hour.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a tiny warm lighthouse on a narrow seaside rock with a little timber landing dock. Match the reference's misty blue harbour and sea, rose-gold sunset sky and very distant soft cliff silhouettes lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-58c809c8-ce24-41ab-ab9d-f41d7988013e.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/HarbourForeground.imageset/HarbourForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "TheatreBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundLoanNotebook.imageset/loan-notebook.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its deep teal river gorge, hazy distant fantasy village and warm peach sunset, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-211de35a-6535-485f-9b9a-7998027ad1d7.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/TheatreBackdrop.imageset/TheatreBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "TheatreLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundLoanNotebook.imageset/loan-notebook.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: an ornate miniature wooden puppet theatre with burgundy curtains and golden trim on a little rocky river landing. Match the reference's deep teal river gorge, hazy distant fantasy village and warm peach sunset lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-13a26c64-4810-482d-9042-98dc7fa71a3d.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/TheatreLandmark.imageset/TheatreLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "TheatreForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundLoanNotebook.imageset/loan-notebook.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: an ivy-covered arched stone riverside house with warm lantern and balcony, on a rocky outcrop. Match the reference's deep teal river gorge, hazy distant fantasy village and warm peach sunset lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-89f0fe07-53d5-48c4-8142-908ced91fb7f.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/TheatreForeground.imageset/TheatreForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "OrchardBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundSmallGuide.imageset/small-guide.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its misty green valley, distant Tuscan hills and warm apricot sunset, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-8a340d7f-bc63-4bd4-9d72-e4a4420a9ec6.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/OrchardBackdrop.imageset/OrchardBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "OrchardLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundSmallGuide.imageset/small-guide.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a blue arched wooden door in a stone garden wall with flowers, orange tree and a small rocky ledge. Match the reference's misty green valley, distant Tuscan hills and warm apricot sunset lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-c393b883-536a-4e46-a8ee-1154a4bb623b.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/OrchardLandmark.imageset/OrchardLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "OrchardForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundSmallGuide.imageset/small-guide.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a leafy orange-tree branch with ripe oranges and blossom growing from a small mossy stone outcrop. Match the reference's misty green valley, distant Tuscan hills and warm apricot sunset lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-bc93bd64-da32-4d04-b8cc-0ad83c5eef78.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/OrchardForeground.imageset/OrchardForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "StormBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundThreePaths.imageset/three-paths.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its violet storm-cloud mountain valley, warm break in the distant sky, soft layered mountain silhouettes, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-d9479720-a48e-4473-8c5c-44d57db84f77.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/StormBackdrop.imageset/StormBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "StormLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundThreePaths.imageset/three-paths.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a broken stone bridge arch on a narrow pine-covered mountain rock. Match the reference's violet storm-cloud mountain valley, warm break in the distant sky, soft layered mountain silhouettes lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-d0e48ef4-1299-4a76-a6d4-37581195996c.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/StormLandmark.imageset/StormLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "StormForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundThreePaths.imageset/three-paths.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a warmly lit tiny shepherd cottage and fir tree on a rocky mountain outcrop. Match the reference's violet storm-cloud mountain valley, warm break in the distant sky, soft layered mountain silhouettes lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-50a0dc1d-8b9e-4b22-a952-9d1dabbc7836.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/StormForeground.imageset/StormForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "LettersBackdrop",
+      "kind": "backdrop",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundThreeEnvelopes.imageset/three-envelopes.jpg",
+      "prompt": "Use case: precise-object-edit. Create the CLEAN DISTANT BACKDROP layer for a portrait iPhone vertical platform game, using the attached image as the edit target. Retain its dusky blue enchanted forest valley, pink twilight sky, distant soft mushroom-village silhouettes, lighting and painterly storybook quality. Remove ALL foreground and midground edge objects: buildings, cliffs, islands, trees, plants, props, bridges, boats, ground and close water detail. Reconstruct the obscured space as softly atmospheric distant scenery. The result must be a continuous full-bleed portrait painting, roughly 9:19, with very open uncluttered centre and lower area. Very distant soft silhouettes may remain at the edges but no sharp foreground landmarks. No foreground stars or sparkles (rendered separately), no text, characters, platforms, UI or borders. Preserve the original palette and identity; do not make a different world.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-b2c87bff-54d6-409a-949e-ed9f15d51152.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/LettersBackdrop.imageset/LettersBackdrop.jpg",
+      "processing": "JPEG quality 85; original dimensions"
+    },
+    {
+      "asset": "LettersLandmark",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundThreeEnvelopes.imageset/three-envelopes.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a red-capped mushroom cottage with warm round window, hanging lantern and trailing roses on a mossy rock. Match the reference's dusky blue enchanted forest valley, pink twilight sky, distant soft mushroom-village silhouettes lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-e10c932a-6303-4379-b6bb-be819db98c25.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/LettersLandmark.imageset/LettersLandmark.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    },
+    {
+      "asset": "LettersForeground",
+      "kind": "cutout",
+      "ref": "/Users/matthewthomas/Documents/Codex/2026-09-03/i-x20/outputs/Cuentiva Word Leap/Artwork/OriginalBackgrounds/BookBackgroundThreeEnvelopes.imageset/three-envelopes.jpg",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a flower-covered stone ledge with a basket of three cream envelopes, quill and red button, little leafy branches. Match the reference's dusky blue enchanted forest valley, pink twilight sky, distant soft mushroom-village silhouettes lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-399a9640-4140-449b-971a-f5fc3d3ece65.png",
+      "destination": "CuentivaWordLeap/Assets.xcassets/LettersForeground.imageset/LettersForeground.png",
+      "processing": "PNG alpha retained; longest edge 1024px"
+    }
+  ],
+  "discarded": [
+    {
+      "asset": "RootsForeground",
+      "source": "/Users/matthewthomas/.codex/generated_images/01a16343-b893-7b10-9660-59fe3ee7b66e/exec-d187192b-7247-4e1c-8413-f9c0e9427247.png",
+      "prompt": "Use case: background-extraction. Asset type: individual parallax scenery cutout for an iPhone game. The attached image is a visual style and setting reference. Extract/reconstruct ONE coherent isolated cluster: a moss-covered root outcrop with delicate luminous mushrooms and hanging fern fronds. Match the reference's enchanted deep teal forest, distant soft tree silhouettes and warm sunbeams lighting, rich painterly fantasy materials and colours. Show the whole cluster including a naturally tapered irregular rock/root underside; no rectangular scene crop. Three-quarter view, pleasing compact vertical silhouette, about 2:3 canvas. Object fills most canvas with transparent margin on ALL sides, no edge clipping. This will float along the screen edge behind gameplay. Genuine transparent alpha background, including between leaves/arches and beneath the object. No sky, ground plane, opaque atmosphere, backdrop, text, watermark, people, animals or UI. ONE cutout only, not a sprite sheet.",
+      "reason": "Trunk touches the top image edge; replaced with a complete low root-and-mushroom cluster."
+    }
+  ]
+}

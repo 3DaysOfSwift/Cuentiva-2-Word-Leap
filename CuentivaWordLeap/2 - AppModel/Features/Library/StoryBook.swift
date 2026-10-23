@@ -16,21 +16,21 @@ struct StoryBook: Identifiable, Hashable, Sendable {
         characterProfile?.portraitAssetName ?? "StorytellerMora"
     }
 
-    /// Stable book IDs keep scenery attached to its story if catalogue order changes.
-    /// The remaining books deliberately retain the original sky until their art is added.
-    var backgroundAssetName: String {
+    var backgroundAssetName: String { environment.backdropAssetName }
+
+    var environment: BookEnvironment {
         switch id {
-        case "cafe": "BookBackgroundCafe"
-        case "garden": "BookBackgroundGarden"
-        case "train": "BookBackgroundTrain"
-        case "sea": "BookBackgroundSea"
-        case "repair": "BookBackgroundRepair"
-        case "repair-hour": "BookBackgroundRepairHour"
-        case "loan-notebook": "BookBackgroundLoanNotebook"
-        case "small-guide": "BookBackgroundSmallGuide"
-        case "three-paths": "BookBackgroundThreePaths"
-        case "three-envelopes": "BookBackgroundThreeEnvelopes"
-        default: "WordLeapSky"
+        case "cafe": .coast
+        case "garden": .roots
+        case "train": .railway
+        case "sea": .puddle
+        case "repair": .observatory
+        case "repair-hour": .harbour
+        case "loan-notebook": .theatre
+        case "small-guide": .orchard
+        case "three-paths": .storm
+        case "three-envelopes": .letters
+        default: .skyFalls
         }
     }
 }
