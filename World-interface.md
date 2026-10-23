@@ -8,6 +8,7 @@
 - The completed-book reader uses the village scenery behind readable Spanish/English passage panels. Book covers now include the level's landscape artwork.
 - Game preparation, failure, HUD, reading prompt, completion controls and Game Over statistics use the shared world palette. Game Over still shows the skeleton over the actual game scene.
 - The static launch screen uses the same village artwork. No additional splash screen or launch delay was introduced.
+- Adventure now keeps this backdrop visible until its catalogue, locks and balance are ready, then fades in the populated menu. There is no launch spinner or zero-balance flash. See `Library-startup.md` for the shipped CUENLIB binary and verification details.
 
 ## Reuse and ownership
 

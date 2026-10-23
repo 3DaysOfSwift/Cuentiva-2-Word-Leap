@@ -1,0 +1,6 @@
+@one|Pipa|Uno|One|First book
+Pipa salta. | Pipa jumps.
+@two|Musgo|Dos|Two|Second book
+Musgo corre. | Musgo runs.
+@three|Mora|Tres|Three|Third book
+Mora mira. | Mora looks.

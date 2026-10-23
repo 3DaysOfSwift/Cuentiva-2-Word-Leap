@@ -12,9 +12,9 @@ struct LibraryFeatureTests {
         #else
         let bundle = Bundle.main
         #endif
-        let url = try #require(bundle.url(forResource: "stories", withExtension: "txt"))
+        let url = try #require(bundle.url(forResource: "Library", withExtension: "dat"))
         let library = LibraryFeature(bookRepository: CuentivaBookRepository(
-            networkingManager: NetworkingManager(), bundledStoriesURL: url), levelProgressStore: fixture.progress)
+            networkingManager: NetworkingManager(), bundledLibraryURL: url), levelProgressStore: fixture.progress)
         await library.load().value
         #expect(library.castles.count == 52)
         #expect(library.castles.map(\.number) == Array(1...52))
@@ -80,7 +80,7 @@ struct LibraryFeatureTests {
         let fixture = try AdventureTestFixture()
         defer { try? fixture.cleanUp() }
         let unavailable = LibraryFeature(bookRepository: CuentivaBookRepository(
-            networkingManager: NetworkingManager(), bundledStoriesURL: nil), levelProgressStore: fixture.progress)
+            networkingManager: NetworkingManager(), bundledLibraryURL: nil), levelProgressStore: fixture.progress)
         await #expect(throws: CastleAccessError.self) { try await unavailable.bookForPlay(id: "one") }
         #expect(unavailable.castles.isEmpty)
         #expect(unavailable.loadError != nil)

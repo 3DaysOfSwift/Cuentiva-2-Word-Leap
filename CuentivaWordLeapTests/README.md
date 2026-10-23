@@ -1,5 +1,13 @@
 # Tests
 
+Startup coverage: `BinaryStoryLibraryTests` compares every bundled binary book
+against the manuscript and cover metadata, including order and punctuation. It
+rejects malformed headers, invalid offsets/counts, invalid UTF-8 and duplicate IDs.
+`LibraryViewModelTests` checks that readiness includes saved locks and balance,
+revisits stay ready, and a corrupt library can recover through retry. The core
+macOS harness passes 65 tests in 18 suites. Launch visuals still need an iOS check.
+See `../Library-startup.md` for regeneration and stale-asset checks.
+
 Persistent treasure coverage: `DoubloonBalanceTests` checks duplicate/lower reports,
 checkpoint-safe crediting, leaving during a save, fresh replay earnings, invalid counts,
 and overlapping credits/refreshes. `LevelProgressStoreTests` checks reopening a balance
@@ -16,7 +24,7 @@ content. `LibraryViewModelTests` checks disabled selection and live map updates.
 These run in the macOS package with production LibraryFeature, AppModel and
 LibraryViewModel sources; tests inject their own graph and never use AppModel.shared.
 
-`Support/AdventureTestFixture.swift` creates a separate temporary manuscript and
+`Support/AdventureTestFixture.swift` copies a three-book binary into a separate temporary directory and creates a
 UserDefaults suite for every test. The existing completion key and data format
 are preserved; no player progress is reset. GameViewModel's locked-entry test
 requires the hosted iOS runner, alongside its existing SpriteKit presentation test.

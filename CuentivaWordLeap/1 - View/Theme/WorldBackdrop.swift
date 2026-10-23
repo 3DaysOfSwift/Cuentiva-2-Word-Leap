@@ -5,6 +5,7 @@ struct WorldBackdrop: View {
     @Environment(ThemeManager.self) private var themeManager
     var assetName = "WorldVillage"
     var shade = 0.18
+    var showsVignette = true
 
     var body: some View {
         GeometryReader { geometry in
@@ -15,9 +16,11 @@ struct WorldBackdrop: View {
                 .clipped()
                 .overlay(themeManager.worldShadow.opacity(shade))
                 .overlay {
-                    LinearGradient(
-                        colors: [.black.opacity(0.25), .clear, themeManager.worldShadow.opacity(0.55)],
-                        startPoint: .top, endPoint: .bottom)
+                    if showsVignette {
+                        LinearGradient(
+                            colors: [.black.opacity(0.25), .clear, themeManager.worldShadow.opacity(0.55)],
+                            startPoint: .top, endPoint: .bottom)
+                    }
                 }
         }
         .ignoresSafeArea()

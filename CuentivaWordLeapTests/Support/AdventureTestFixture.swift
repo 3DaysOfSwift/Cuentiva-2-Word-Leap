@@ -19,17 +19,15 @@ final class AdventureTestFixture {
             throw CocoaError(.fileWriteUnknown)
         }
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        let manuscript = """
-        @one|Pipa|Uno|One|First book
-        Pipa salta. | Pipa jumps.
-        @two|Musgo|Dos|Two|Second book
-        Musgo corre. | Musgo runs.
-        @three|Mora|Tres|Three|Third book
-        Mora mira. | Mora looks.
-        """
-        let url = directory.appendingPathComponent("stories.txt")
-        try Data(manuscript.utf8).write(to: url)
-        repository = CuentivaBookRepository(networkingManager: NetworkingManager(), bundledStoriesURL: url)
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
+        let bundle = Bundle(for: AdventureTestFixture.self)
+        #endif
+        let source = try #require(bundle.url(forResource: "AdventureLibrary", withExtension: "dat"))
+        let url = directory.appendingPathComponent("Library.dat")
+        try FileManager.default.copyItem(at: source, to: url)
+        repository = CuentivaBookRepository(networkingManager: NetworkingManager(), bundledLibraryURL: url)
         progress = LevelProgressStore(defaults: defaults)
         library = LibraryFeature(bookRepository: repository, levelProgressStore: progress)
         game = WordLeapFeature(levelPlanBuilder: LevelPlanBuilder(vocabularyURL: nil), libraryFeature: library)

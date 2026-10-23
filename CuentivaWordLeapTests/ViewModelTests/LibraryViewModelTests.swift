@@ -1,8 +1,52 @@
+import Foundation
 import Testing
 @testable import CuentivaWordLeap
 
 @MainActor
 struct LibraryViewModelTests {
+    @Test func firstReadyPresentationIncludesSavedLocksAndBalance() async throws {
+        let fixture = try AdventureTestFixture()
+        defer { try? fixture.cleanUp() }
+        await fixture.progress.recordCompletion(of: "one")
+        _ = await fixture.progress.addDoubloons(12)
+        let model = LibraryViewModel(libraryFeature: fixture.library)
+        #expect(!model.isReady)
+        #expect(model.books.isEmpty)
+        await model.load().value
+        #expect(model.isReady)
+        #expect(model.doubloonBalance == 12)
+        #expect(model.conqueredCount == 1)
+        #expect(model.castles.map(\.isUnlocked) == [true, true, false])
+        #expect(model.errorMessage == nil)
+
+        let revisit = model.load()
+        #expect(model.isReady)
+        #expect(model.books.count == 3)
+        #expect(model.doubloonBalance == 12)
+        await revisit.value
+        #expect(model.isReady)
+    }
+
+    @Test func failedPreparationCanRetryWithoutPublishingAnEmptyMenu() async throws {
+        let fixture = try AdventureTestFixture()
+        defer { try? fixture.cleanUp() }
+        let url = fixture.directory.appendingPathComponent("Library.dat")
+        let validData = try Data(contentsOf: url)
+        try Data("invalid library".utf8).write(to: url)
+        let model = LibraryViewModel(libraryFeature: fixture.library)
+        await model.load().value
+        #expect(!model.isReady)
+        #expect(model.books.isEmpty)
+        #expect(model.errorMessage != nil)
+        #expect(!model.isLoading)
+
+        try validData.write(to: url)
+        await model.load().value
+        #expect(model.isReady)
+        #expect(model.books.count == 3)
+        #expect(model.errorMessage == nil)
+    }
+
     @Test func balanceLoadsSavedTreasureAndReflectsNewGameplayCredits() async throws {
         let fixture = try AdventureTestFixture()
         defer { try? fixture.cleanUp() }

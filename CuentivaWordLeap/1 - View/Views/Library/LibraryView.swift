@@ -2,17 +2,30 @@ import SwiftUI
 
 struct LibraryView: View {
     @Environment(ThemeManager.self) private var themeManager
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel = LibraryViewModel()
 
     var body: some View {
         @Bindable var viewModel = viewModel
         NavigationStack {
             Group {
-                if viewModel.books.isEmpty, viewModel.isLoading {
-                    ProgressView("Opening the gates…")
-                        .tint(themeManager.worldAccent)
+                if viewModel.isReady {
+                    storyMap.transition(.opacity)
+                } else if let message = viewModel.errorMessage {
+                    VStack(spacing: 16) {
+                        Text(message).multilineTextAlignment(.center)
+                        Button("Try again") { _ = viewModel.load() }
+                            .buttonStyle(.borderedProminent)
+                            .tint(themeManager.worldAccent)
+                            .foregroundStyle(themeManager.worldShadow)
+                    }
+                    .padding(24).worldPanel().padding(24)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    Color.clear
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else { storyMap }
+                        .accessibilityHidden(true)
+                }
             }
             .foregroundStyle(themeManager.worldText)
             .safeAreaInset(edge: .top, spacing: 0) {
@@ -31,8 +44,12 @@ struct LibraryView: View {
                 }
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
+                .opacity(viewModel.isReady ? 1 : 0)
+                .accessibilityHidden(!viewModel.isReady)
             }
-            .background { WorldBackdrop() }
+            // Match LaunchScreen.storyboard's village image and uniform shade.
+            .background { WorldBackdrop(shade: 0.32, showsVignette: false) }
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.25), value: viewModel.isReady)
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.hidden, for: .navigationBar)

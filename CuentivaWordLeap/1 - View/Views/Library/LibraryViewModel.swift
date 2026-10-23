@@ -15,6 +15,7 @@ final class LibraryViewModel {
     var doubloonBalance: Int { libraryFeature.doubloonBalance }
     var errorMessage: String? { libraryFeature.loadError }
     var isLoading: Bool { libraryFeature.isLoading }
+    var isReady: Bool { libraryFeature.isReady }
 
     func select(_ book: StoryBook) {
         guard libraryFeature.canPlay(book) else { return }

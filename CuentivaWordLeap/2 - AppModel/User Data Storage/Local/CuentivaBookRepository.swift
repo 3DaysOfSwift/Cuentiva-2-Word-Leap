@@ -3,22 +3,22 @@ import Foundation
 actor CuentivaBookRepository {
     private let networkingManager: NetworkingManager
     private var cachedBooks: [StoryBook]?
-    private let bundledStoriesURL: URL?
+    private let bundledLibraryURL: URL?
     private let githubStoriesURL = URL(string: "https://raw.githubusercontent.com/3DaysOfSwift/Cuentiva/main/content/editorial/stories.txt")
 
     init(networkingManager: NetworkingManager,
-         bundledStoriesURL: URL? = Bundle.main.url(forResource: "stories", withExtension: "txt")) {
+         bundledLibraryURL: URL? = Bundle.main.url(forResource: "Library", withExtension: "dat")) {
         self.networkingManager = networkingManager
-        self.bundledStoriesURL = bundledStoriesURL
+        self.bundledLibraryURL = bundledLibraryURL
     }
 
     func books() throws -> [StoryBook] {
         if let cachedBooks { return cachedBooks }
         // Xcode copies files from the synchronized resource group to the app bundle root.
-        guard let bundledURL = bundledStoriesURL else {
+        guard let bundledURL = bundledLibraryURL else {
             throw CocoaError(.fileNoSuchFile)
         }
-        let books = try Self.decode(Data(contentsOf: bundledURL), covers: bundledCovers())
+        let books = try BinaryStoryLibrary(url: bundledURL).books()
         cachedBooks = books
         return books
     }
@@ -26,14 +26,10 @@ actor CuentivaBookRepository {
     func refreshFromGitHub() async throws -> [StoryBook] {
         guard let githubStoriesURL else { throw CocoaError(.fileNoSuchFile) }
         let data = try await networkingManager.data(from: githubStoriesURL)
-        let books = try Self.decode(data, covers: bundledCovers())
+        let covers = Dictionary(try books().map { ($0.id, $0.cover) }, uniquingKeysWith: { first, _ in first })
+        let books = try Self.decode(data, covers: covers)
         cachedBooks = books
         return books
-    }
-
-    private func bundledCovers() throws -> [String: StoryBookCover] {
-        guard let url = Bundle.main.url(forResource: "metadata", withExtension: "json") else { return [:] }
-        return try JSONDecoder().decode([String: StoryBookCover].self, from: Data(contentsOf: url))
     }
 
     static func decode(_ data: Data, covers: [String: StoryBookCover] = [:]) throws -> [StoryBook] {

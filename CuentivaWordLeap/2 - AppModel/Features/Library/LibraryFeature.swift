@@ -9,6 +9,7 @@ final class LibraryFeature {
     private(set) var doubloonBalance = 0
     private(set) var loadError: String?
     private(set) var isLoading = false
+    private(set) var isReady = false
     @ObservationIgnored private var loadingTask: Task<Void, Never>?
 
     init(bookRepository: CuentivaBookRepository, levelProgressStore: LevelProgressStore) {
@@ -103,11 +104,17 @@ final class LibraryFeature {
     ) async {
         isLoading = true
         defer { isLoading = false; loadingTask = nil }
-        await refreshDoubloonBalance()
         do {
-            books = try await repository.books()
-            completedBookIDs.formUnion(await levelProgressStore.completedBookIDs())
+            async let catalogue = repository.books()
+            async let completed = levelProgressStore.completedBookIDs()
+            async let balance = levelProgressStore.doubloonBalance()
+            let snapshot = try await (catalogue, completed, balance)
+            // Publish the first presentation together, never briefly show zero progress.
+            books = snapshot.0
+            completedBookIDs.formUnion(snapshot.1)
+            doubloonBalance = max(doubloonBalance, snapshot.2)
             loadError = nil
+            isReady = true
         }
         catch { loadError = "The Cuentiva book collection could not be opened." }
     }
