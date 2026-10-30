@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23501" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="launch-controller">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23500"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -23,7 +23,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="launch-safe-area"/>
-                        <color key="backgroundColor" name="LaunchBackground"/>
+                        <color key="backgroundColor" red="0.025" green="0.055" blue="0.10" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="launch-village" firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="village-top"/>
                             <constraint firstItem="launch-village" firstAttribute="bottom" secondItem="launch-view" secondAttribute="bottom" id="village-bottom"/>
@@ -43,7 +43,7 @@
     <resources>
         <image name="WorldVillage" width="852" height="1846"/>
         <namedColor name="LaunchBackground">
-            <color red="0.96" green="0.96" blue="0.94" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.025" green="0.055" blue="0.10" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

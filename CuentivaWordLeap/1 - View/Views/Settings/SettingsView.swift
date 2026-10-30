@@ -77,9 +77,8 @@ struct SettingsView: View {
             }
             .foregroundStyle(themeManager.worldText)
             .background { WorldBackdrop(shade: 0.27) }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .worldNavigation()
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbar(.hidden, for: .navigationBar)
         }
     }
 }

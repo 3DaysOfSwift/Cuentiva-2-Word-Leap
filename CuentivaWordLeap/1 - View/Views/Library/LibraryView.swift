@@ -47,7 +47,7 @@ struct LibraryView: View {
                 .opacity(viewModel.isReady ? 1 : 0)
                 .accessibilityHidden(!viewModel.isReady)
             }
-            // Match LaunchScreen.storyboard's village image and uniform shade.
+            // Match AdventureLaunch.storyboard's village image and uniform shade.
             .background { WorldBackdrop(shade: 0.32, showsVignette: false) }
             .animation(reduceMotion ? nil : .easeOut(duration: 0.25), value: viewModel.isReady)
             .navigationTitle("")
@@ -58,7 +58,6 @@ struct LibraryView: View {
             .onAppear { _ = viewModel.refreshProgress() }
             .navigationDestination(item: $viewModel.selectedBook) { book in GameView(book: book) }
         }
-        .preferredColorScheme(.dark)
     }
 
     private var storyMap: some View {

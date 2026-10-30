@@ -1,0 +1,7 @@
+Generated with the built-in image generation tool.
+Character reference: CuentivaWordLeap/Assets.xcassets/WordLeapPipa.imageset/word-leap-pipa.png
+Active icon: CuentivaWordLeap/Assets.xcassets/AppIcon.appiconset/CuentivaWordLeapIcon-1024.png
+The previous icon remains recoverable from Git history.
+
+Final prompt:
+Use case: identity-preserve. Asset type: production iOS app icon for Cuentiva 2: Word Leap. Input image 1 is the exact in-game Pipa character to preserve, not a background reference. Create a square 1024 x 1024 opaque full-bleed icon using this SAME cheerful teal spotted little gecko, huge amber eyes, cream muzzle and belly, orange-red scarf, olive backpack with bedroll and brown book. Preserve his facial identity, proportions, painterly detailed 3D storybook finish, outfit and joyful upward-leaping personality. Simplify composition for excellent recognition at small iPhone home-screen sizes: a large three-quarter close-up including head, upper body, raised hand and book; face is the dominant focal point, taking the upper center, with scarf flowing to the side. Background: plain warm ivory with a very subtle soft golden glow, inspired by the original Cuentiva icon, no scenery. The mascot should fill most of the square while keeping his head and hand safely within iOS corner-mask margins. Do not draw an icon container or rounded corners: the entire output is the edge-to-edge square artwork. No words, letters, numbers, logos, platforms, stars, castles, extra characters, ornamental border or watermark. Opaque background, not transparent.

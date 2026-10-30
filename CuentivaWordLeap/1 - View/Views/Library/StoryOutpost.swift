@@ -4,6 +4,7 @@ import SwiftUI
 struct StoryOutpost: View {
     @Environment(ThemeManager.self) private var themeManager
     let castle: AdventureCastle
+    private let actionDiameter: CGFloat = 48
 
     private var isLeading: Bool { !castle.number.isMultiple(of: 2) }
     private var alignment: HorizontalAlignment { isLeading ? .leading : .trailing }
@@ -48,16 +49,6 @@ struct StoryOutpost: View {
                         .shadow(color: .black.opacity(0.5), radius: 6, y: 3)
                         .offset(x: -8, y: 12)
                 }
-                .overlay(alignment: .topTrailing) {
-                    Image(systemName: castle.isUnlocked
-                        ? (castle.isCompleted ? "flag.checkered" : "play.fill") : "lock.fill")
-                        .font(.headline)
-                        .foregroundStyle(themeManager.worldShadow)
-                        .frame(width: 40, height: 40)
-                        .background(themeManager.worldAccent, in: Circle())
-                        .shadow(color: .black.opacity(0.3), radius: 6, y: 3)
-                        .offset(x: 8, y: 45)
-                }
                 .padding(.horizontal, 16)
                 .accessibilityHidden(true)
 
@@ -86,9 +77,23 @@ struct StoryOutpost: View {
                     .padding(.top, 3)
                 }
                 .multilineTextAlignment(textAlignment)
+                .padding(.top, actionDiameter / 2)
                 .padding(18)
                 .frame(maxWidth: 280, alignment: frameAlignment)
                 .worldPanel()
+                .overlay(alignment: .top) {
+                    Image(systemName: castle.isUnlocked
+                        ? (castle.isCompleted ? "flag.checkered" : "play.fill") : "lock.fill")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(themeManager.worldShadow)
+                        .frame(width: actionDiameter, height: actionDiameter)
+                        .background(themeManager.worldAccent, in: Circle())
+                        .shadow(color: .black.opacity(0.3), radius: 6, y: 3)
+                        .offset(y: -actionDiameter / 2)
+                        .accessibilityHidden(true)
+                }
+                // Reserve the protruding half so the action clears the character artwork.
+                .padding(.top, actionDiameter / 2 + 12)
             }
             .frame(maxWidth: .infinity, alignment: frameAlignment)
             .padding(.horizontal, 24)
